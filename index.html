@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuLi - Nuestra Historia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PORTADA INICIAL -->
+    <div id="portada">
+        <div id="corazon-inicio">❤️</div>
+    </div>
+
+    <!-- ESTRELLAS -->
+    <div id="estrellas-container">
+        <div class="estrella" style="--size:2px; --top:5%; --left:10%; --dur:5s;"></div>
+        <div class="estrella" style="--size:3px; --top:15%; --left:25%; --dur:6s;"></div>
+        <div class="estrella" style="--size:4px; --top:20%; --left:40%; --dur:8s;"></div>
+        <div class="estrella" style="--size:4px; --top:30%; --left:60%; --dur:10s;"></div>
+        <div class="estrella" style="--size:2px; --top:50%; --left:15%; --dur:7s;"></div>
+        <div class="estrella" style="--size:3px; --top:55%; --left:35%; --dur:9s;"></div>
+        <div class="estrella" style="--size:4px; --top:60%; --left:70%; --dur:12s;"></div>
+    </div>
+
+    <!-- TARJETA PRINCIPAL -->
+    <div class="tarjeta">
+        <h1 class="titulo">Luli</h1>
+        <img src="assets/images/mickey.png" alt="Foto especial" class="foto-principal" id="foto-principal">
+        <p class="verso" id="verso">
+            "En cada instante compartido aprendí
+            que la felicidad no hace ruido,
+            solo se queda,
+            como tu presencia en mis días.”
+        </p>
+
+        <div class="contador">
+            <div id="tiempo-principal">Calculando tiempo...</div>
+            <div id="reloj-secundario">00:00:00</div>
+        </div>
+
+        <div class="contenedor-reproductor">
+            <div class="barra-musica">
+                <div class="progreso" id="progreso-cancion"></div>
+            </div>
+            <button id="btn-play" class="boton-play">▶ Play</button>
+        </div>
+    </div>
+
+    <!-- SEPARADOR -->
+    <div class="separador-corazon">
+        <span>❤</span>
+        <span>❤</span>
+        <span>❤</span>
+    </div>
+
+    <!-- BLOQUE CONTADOR DE PAREJA -->
+    <div class="bloque-pareja" id="bloque-pareja">
+        <div class="contador-grande" id="contador-pareja">0</div>
+        <div class="frase-pareja">Vamos por un día más juntos</div>
+        <div class="botones-pareja">
+            <img src="assets/images/chica.png" alt="Chica" id="btn-chica" class="btn-imagen">
+            <img src="assets/images/chico.png" alt="Chico" id="btn-chico" class="btn-imagen">
+        </div>
+        <div id="confeti-container"></div>
+    </div>
+
+    <audio id="sonido-click" src="assets/audio/click.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

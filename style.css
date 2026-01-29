@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+/* ===== RESET ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ===== BODY ===== */
+body {
+    font-size:16px;
+    color:white;
+    font-family:Cambria, Georgia, serif;
+    line-height:1.5;
+    min-height:100vh;
+    background:#0a0f25;
+    position:relative;
+    overflow-x:hidden;
+    padding:5vh 10px;
+}
+
+/* ===== PORTADA ===== */
+#portada {
+    position:fixed; top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(15px);
+    display:flex; justify-content:center; align-items:center;
+    z-index:999;
+    transition: opacity 0.8s ease;
+}
+#corazon-inicio {
+    font-size:5rem; cursor:pointer;
+    animation: latido 1s infinite alternate, brillo-corazon 2s infinite alternate;
+}
+
+/* ===== ESTRELLAS ===== */
+.estrella{
+    position:absolute;
+    width:var(--size,2px);
+    height:var(--size,2px);
+    top:var(--top,10%);
+    left:var(--left,10%);
+    background:white;
+    border-radius:50%;
+    opacity:0;
+    animation: parpadeo var(--dur,5s) infinite alternate;
+}
+@keyframes parpadeo{
+    0%{opacity:0.2; transform: scale(1);}
+    50%{opacity:1; transform: scale(1.5);}
+    100%{opacity:0.2; transform: scale(1);}
+}
+#estrellas-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;display:block;}
+
+/* ===== TARJETA PRINCIPAL ===== */
+.tarjeta {
+    position:relative; z-index:1;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    padding:25px 20px;
+    width:100%; max-width:350px;
+    text-align:center;
+    box-shadow:0 0 35px rgba(224,247,250,0.5),0 0 60px rgba(224,247,250,0.2);
+    margin:0 auto 60px auto; /* más margen inferior en móvil */
+    animation: aparecer 1.5s ease-out forwards;
+    border-radius: 20px;
+}
+.titulo { 
+    font-family:'Great Vibes', cursive; 
+    font-size:4rem; 
+    color:#e0f7fa; 
+    text-shadow:0 0 10px rgba(0,0,0,0.5); /* sombra para contraste */
+    animation:latido 3s infinite alternate; 
+    margin-bottom:20px; 
+}
+.foto-principal { 
+    width:100%; height:auto; 
+    object-fit:cover; 
+    margin:15px 0; 
+    transition:transform 0.5s, filter 0.5s; 
+}
+.verso { 
+    font-family:'Great Vibes', cursive; 
+    font-size:1.6rem; 
+    color:#fff; 
+    margin:15px 0 30px 0; 
+    line-height:1.6; 
+    letter-spacing:0.05em; /* mayor claridad */
+    text-shadow:0 0 6px rgba(0,0,0,0.5); /* contraste frente a animaciones */
+}
+.contador { 
+    background: rgba(0,0,0,0.15); /* más contraste */
+    backdrop-filter:blur(8px); 
+    padding:22px; 
+    border-radius:20px; 
+    border:1px solid rgba(255,255,255,0.2); 
+    margin-bottom:45px; /* más espaciado */
+    animation:pulso-suave 4s ease-in-out infinite; 
+}
+#tiempo-principal { font-size:1.3rem; font-weight:bold; margin-bottom:8px; color:#e0f7fa; text-shadow:0 0 6px rgba(0,0,0,0.5);}
+#reloj-secundario { font-size:1.1rem; letter-spacing:2px; font-family:monospace; transition:all 0.2s linear; }
+
+.contenedor-reproductor { width:100%; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.barra-musica { width:100%; height:6px; background:rgba(255,255,255,0.2); border-radius:3px; overflow:hidden; }
+.progreso { width:0%; height:100%; background:#e0f7fa; box-shadow:0 0 10px #e0f7fa; transition:width 0.2s linear,box-shadow 0.3s; }
+.boton-play { background:none; border:2px solid #e0f7fa; color:#e0f7fa; padding:10px 25px; border-radius:50px; font-size:1rem; cursor:pointer; transition:0.3s, box-shadow 0.3s; }
+.boton-play:active { background: rgba(224,247,250,0.2); box-shadow:0 0 15px #e0f7fa; }
+
+/* ===== BLOQUE PAREJA ===== */
+.bloque-pareja {
+    position:relative; z-index:1;
+    background: rgba(0,0,0,0.25); /* más contraste */
+    backdrop-filter: blur(10px);
+    padding:40px 30px; /* más padding para móvil */
+    max-width:350px;
+    margin:35px auto 65px auto; /* más margen para respirar */
+    text-align:center;
+    box-shadow:0 0 25px rgba(224,247,250,0.5),0 0 50px rgba(224,247,250,0.2);
+    border-radius: 20px;
+    border:2px solid transparent;
+    transition:border-color 0.4s;
+}
+.contador-grande { font-family:'Great Vibes', cursive; font-size:5rem; margin-bottom:10px; text-shadow:0 0 6px rgba(0,0,0,0.5);}
+.frase-pareja { font-family:'Great Vibes', cursive; font-size:2rem; margin-bottom:25px; text-shadow:0 0 6px rgba(0,0,0,0.5);}
+.botones-pareja { display:flex; justify-content:center; gap:50px; /* más separación */ }
+.btn-imagen { width:80px; height:80px; cursor:pointer; transition:transform 0.3s, filter 0.4s; }
+.btn-imagen:hover, .btn-imagen.activo { transform:scale(1.2); filter:drop-shadow(0 0 15px #e0f7fa); }
+
+/* ===== SEPARADOR ===== */
+.separador-corazon { text-align:center; font-size:2rem; color:#ffb6c1; margin:30px 0 25px 0; animation:latido-corazon 2s infinite alternate; }
+.separador-corazon span { margin:0 5px; display:inline-block; animation:latido-corazon 2s infinite alternate; }
+
+/* ===== CONFETI ===== */
+#confeti-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:998; }
+
+/* ===== ANIMACIONES ===== */
+@keyframes aparecer{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);} }
+@keyframes latido{from{text-shadow:0 0 10px rgba(173,216,230,0.8);}to{text-shadow:0 0 25px rgba(173,216,230,1);} }
+@keyframes pulso-suave{0%{transform:scale(1);box-shadow:0 0 10px rgba(224,247,250,0.4);}50%{transform:scale(1.03);box-shadow:0 0 25px rgba(224,247,250,0.7);}100%{transform:scale(1);box-shadow:0 0 10px rgba(224,247,250,0.4);} }
+@keyframes latido-corazon { from{transform:scale(1);} to{transform:scale(1.2);} }
+
+/* ===== BRILLO SUAVE ===== */
+.foto-principal.brillo { animation: brilloDrop 2s ease-in-out infinite alternate; }
+@keyframes brilloDrop { 0% { filter: drop-shadow(0 0 3px #e0f7fa) drop-shadow(0 0 6px #e0f7fa); } 50% { filter: drop-shadow(0 0 7px #e0f7fa) drop-shadow(0 0 14px #e0f7fa); } 100% { filter: drop-shadow(0 0 3px #e0f7fa) drop-shadow(0 0 6px #e0f7fa); } }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:400px){
+    .titulo{font-size:3rem;}
+    .verso{font-size:1.4rem; letter-spacing:0.04em; line-height:1.5;}
+    .tarjeta{margin-bottom:65px; padding:25px 20px;}
+    .contador{padding:15px; margin-bottom:50px;}
+    .boton-play{padding:8px 18px;font-size:0.9rem;}
+    .contador-grande{font-size:2.2rem;}
+    .frase-pareja{font-size:1.2rem; margin-bottom:25px;}
+    .btn-imagen{width:60px;height:60px;}
+    .botones-pareja{gap:50px;}
+}
+
+/* ===== POP ANIM ===== */
+.pop-anim {
+    position: fixed;
+    font-size: 2rem;
+    opacity: 1;
+    transform: scale(0.5);
+    animation: pop 0.8s forwards;
+    pointer-events: none;
+}
+@keyframes pop { 0% { transform: scale(0.5); opacity:1; } 50% { transform: scale(1.5); opacity:1; } 100% { transform: scale(1); opacity:0; } }
+
+/* ===== CONFETI CAIDA ===== */
+@keyframes caerConfeti{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(150px) rotate(360deg);opacity:0;}
+}
