@@ -1,87 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LuLi - Nuestra historia y momentos especiales juntos.">
-    <title>LuLi - Nuestra Historia</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luli 💖</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- PORTADA -->
-    <section id="portada">
-        <div id="corazon-inicio">❤️</div>
-    </section>
+  <!-- BLOQUE 1 -->
+  <section class="card">
+    <h1 class="titulo">Luli</h1>
 
-    <!-- ESTRELLAS -->
-    <div id="estrellas-container">
-        <div class="estrella" style="--size:2px; --top:5%; --left:10%; --dur:5s;"></div>
-        <div class="estrella" style="--size:3px; --top:15%; --left:25%; --dur:6s;"></div>
-        <div class="estrella" style="--size:4px; --top:20%; --left:40%; --dur:8s;"></div>
-        <div class="estrella" style="--size:4px; --top:30%; --left:60%; --dur:10s;"></div>
-        <div class="estrella" style="--size:2px; --top:50%; --left:15%; --dur:7s;"></div>
-        <div class="estrella" style="--size:3px; --top:55%; --left:35%; --dur:9s;"></div>
-        <div class="estrella" style="--size:4px; --top:60%; --left:70%; --dur:12s;"></div>
+    <div class="image-container glow">
+      <img src="assets/luli.jpg" alt="Luli">
     </div>
 
-    <main>
+    <div class="heart">❤️</div>
+    <p class="frase">Eres mi lugar favorito en el mundo.</p>
 
-        <!-- TARJETA -->
-        <section class="tarjeta">
-            <h1 class="titulo">Luli</h1>
+    <p class="verso">
+      “Desde que llegaste a mi vida, todo tiene más color.”
+    </p>
 
-            <img src="assets/images/mickey.png"
-                 alt="Foto especial"
-                 class="foto-principal"
-                 id="foto-principal">
+    <audio controls>
+      <source src="assets/cancion.mp3" type="audio/mpeg">
+    </audio>
+  </section>
 
-            <p class="verso" id="verso">
-                "En cada instante compartido aprendí
-                que la felicidad no hace ruido,
-                solo se queda,
-                como tu presencia en mis días.”
-            </p>
+  <div class="separator"></div>
 
-            <div class="contador">
-                <div id="tiempo-principal">Calculando tiempo...</div>
-                <div id="reloj-secundario">00:00:00</div>
-            </div>
+  <!-- BLOQUE 2 -->
+  <section class="card contador-vertical">
+    <div class="tiempo">
+      <span class="label">Años</span>
+      <span id="years">0</span>
+    </div>
 
-            <div class="contenedor-reproductor">
-                <div class="barra-musica">
-                    <div class="progreso" id="progreso-cancion"></div>
-                </div>
-                <button id="btn-play" class="boton-play" type="button">
-                    ▶ Play
-                </button>
-            </div>
-        </section>
+    <div class="tiempo meses">
+      <span class="label">Meses</span>
+      <span id="months">0</span>
+    </div>
 
-        <div class="separador-corazon">❤ ❤ ❤</div>
+    <div class="tiempo">
+      <span class="label">Días</span>
+      <span id="days">0</span>
+    </div>
 
-        <!-- BLOQUE PAREJA -->
-        <section class="bloque-pareja" id="bloque-pareja">
-            <div class="contador-grande" id="contador-pareja">0</div>
-            <div class="frase-pareja">Vamos por un día más juntos</div>
+    <div class="reloj" id="clock"></div>
+  </section>
 
-            <div class="botones-pareja">
-                <img src="assets/images/chica.png"
-                     alt="Chica"
-                     id="btn-chica"
-                     class="btn-imagen">
+  <div class="separator"></div>
 
-                <img src="assets/images/chico.png"
-                     alt="Chico"
-                     id="btn-chico"
-                     class="btn-imagen">
-            </div>
+  <!-- BLOQUE 3 -->
+  <section class="card galeria">
+    <div class="accordion">
+      <div class="panel"><img src="assets/gal1.jpg" alt=""></div>
+      <div class="panel"><img src="assets/gal2.jpg" alt=""></div>
+      <div class="panel"><img src="assets/gal3.jpg" alt=""></div>
+      <div class="panel"><img src="assets/gal4.jpg" alt=""></div>
+      <div class="panel"><img src="assets/gal5.jpg" alt=""></div>
+    </div>
+  </section>
 
-            <div id="confeti-container"></div>
-        </section>
-
-    </main>
-
-    <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
