@@ -1,188 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-:root{
-    --fondo:#0a0f25;
-    --principal:#e0f7fa;
-    --rosa:#ffb6c1;
-    --radio:20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    font-family:Cambria, Georgia, serif;
-    background:var(--fondo);
-    color:white;
-    min-height:100vh;
-    padding:5vh 10px;
-    overflow-x:hidden;
+body {
+  background: #0f0f0f;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-/* PORTADA */
-#portada{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.5);
-    backdrop-filter:blur(15px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-    transition:opacity 0.8s ease;
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.2);
 }
 
-#corazon-inicio{
-    font-size:5rem;
-    cursor:pointer;
-    animation:latido 1s infinite alternate;
+.separator {
+  height: 2px;
+  width: 80%;
+  background: linear-gradient(to right, transparent, #ff69b4, transparent);
+  margin: 30px 0;
 }
 
-/* ESTRELLAS */
-#estrellas-container{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
+/* TITULO */
+.titulo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  margin-bottom: 15px;
 }
 
-.estrella{
-    position:absolute;
-    width:var(--size);
-    height:var(--size);
-    top:var(--top);
-    left:var(--left);
-    background:white;
-    border-radius:50%;
-    animation:parpadeo var(--dur) infinite alternate;
+/* IMAGEN */
+.image-container {
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 15px;
 }
 
-/* TARJETA */
-.tarjeta,
-.bloque-pareja{
-    max-width:350px;
-    margin:0 auto 60px;
-    padding:25px;
-    text-align:center;
-    background:rgba(0,0,0,0.35);
-    backdrop-filter:blur(10px);
-    border-radius:var(--radio);
-    box-shadow:0 0 25px rgba(224,247,250,0.5);
+.image-container img {
+  width: 100%;
+  display: block;
 }
 
-.titulo{
-    font-family:'Great Vibes', cursive;
-    font-size:4rem;
-    color:var(--principal);
-    margin-bottom:20px;
+/* Glow permanente */
+.glow {
+  box-shadow: 0 0 20px #ff69b4,
+              0 0 40px #ff1493,
+              0 0 60px #ff69b4;
 }
 
-.foto-principal{
-    width:100%;
-    margin:15px 0;
-    transition:0.4s ease;
+/* Corazón */
+.heart {
+  font-size: 28px;
+  margin: 10px 0;
 }
 
-.foto-principal.brillo{
-    filter:drop-shadow(0 0 15px var(--principal));
+.frase {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 15px;
 }
 
-.verso{
-    font-family:'Great Vibes', cursive;
-    font-size:1.6rem;
-    margin-bottom:25px;
+/* CONTADOR VERTICAL */
+.contador-vertical {
+  font-family: 'Great Vibes', cursive;
 }
 
-.contador{
-    margin-bottom:35px;
+.tiempo {
+  margin: 20px 0;
 }
 
-#reloj-secundario{
-    font-family:monospace;
+.label {
+  display: block;
+  font-size: 28px;
 }
 
-/* REPRODUCTOR */
-.contenedor-reproductor{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.tiempo span:last-child {
+  font-size: 36px;
 }
 
-.barra-musica{
-    width:100%;
-    height:6px;
-    background:rgba(255,255,255,0.2);
-    border-radius:3px;
-    overflow:hidden;
+.meses span:last-child {
+  font-size: 50px;
+  color: #ff69b4;
 }
 
-.progreso{
-    width:0%;
-    height:100%;
-    background:var(--principal);
-    transition:width 0.2s linear;
+.reloj {
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  opacity: 0.6;
 }
 
-.boton-play{
-    border:2px solid var(--principal);
-    background:none;
-    color:var(--principal);
-    padding:8px 20px;
-    border-radius:50px;
-    cursor:pointer;
+/* GALERIA ACORDEON */
+.accordion {
+  display: flex;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 15px;
 }
 
-/* BLOQUE PAREJA */
-.contador-grande{
-    font-family:'Great Vibes', cursive;
-    font-size:4rem;
+.panel {
+  flex: 1;
+  transition: flex 0.5s ease;
+  overflow: hidden;
 }
 
-.frase-pareja{
-    font-family:'Great Vibes', cursive;
-    font-size:1.8rem;
-    margin-bottom:20px;
+.panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.botones-pareja{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-}
-
-.btn-imagen{
-    width:70px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.btn-imagen:hover,
-.btn-imagen.activo{
-    transform:scale(1.2);
-}
-
-/* ANIMACIONES */
-@keyframes latido{
-    from{transform:scale(1);}
-    to{transform:scale(1.2);}
-}
-
-@keyframes parpadeo{
-    from{opacity:0.2;}
-    to{opacity:1;}
-}
-
-@keyframes caerConfeti{
-    from{transform:translateY(0);}
-    to{transform:translateY(150px);opacity:0;}
-}
-
-.pop-anim{
-    position:fixed;
-    font-size:2rem;
-    animation:pop 0.8s forwards;
-}
-
-@keyframes pop{
-    0%{transform:scale(0.5);opacity:1;}
-    100%{transform:scale(1.5);opacity:0;}
+.panel:hover {
+  flex: 4;
 }
