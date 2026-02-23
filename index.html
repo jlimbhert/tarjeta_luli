@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Luli</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
+    <title>Nuestra Historia</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
-    <audio id="mainAudio" loop>
-        <source src="assets/audio/cancion.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="clickSound">
-        <source src="assets/audio/click.mp3" type="audio/mpeg">
-    </audio>
 
-    <div class="sky" id="sky"></div>
+    <div id="sky" class="sky"></div>
+
+    <div id="musicDisk" class="music-control">
+        <span>💿</span>
+    </div>
 
     <div id="cover" class="cover">
         <div class="content">
-            <img src="assets/images/chica.png" id="mainIcon" class="main-icon" alt="Icono">
-            <h1 class="phrase">Eres el sueño, que no quiero dejar de soñar</h1>
+            <img src="assets/images/chica.png" id="mainIcon" class="main-icon">
+            <h1 class="phrase">Toca para descubrir</h1>
         </div>
     </div>
 
     <div id="main-content" class="main-content hidden">
-        <div id="block-1" class="magic-frame">
+        <div class="magic-frame">
             <div class="magic-frame-inner"></div>
-            <h2 class="title-luli">Mi pequeña Luli</h2>
-            <img src="assets/images/mickey.png" class="image-luli" alt="Imagen Especial">
+            <h2 class="title-luli">Para Luli</h2>
+            <div class="img-wrapper">
+                <img src="assets/images/foto-luli.jpg" class="image-luli">
+            </div>
             <div id="typewriter-text" class="verse-container"></div>
         </div>
     </div>
@@ -37,10 +37,16 @@
         <div id="block-2" class="magic-frame counter-photo-bg">
             <div class="magic-frame-inner photo-overlay"></div>
 
-            <div class="names-container">
-                <span class="name-script">Luli</span>
-                <span class="name-plus">+</span>
-                <span class="name-script">Julián</span>
+            <div class="names-wrapper">
+                <div class="name-row-right">
+                    <span class="name-script">Luli</span>
+                </div>
+                <div class="name-row-center">
+                    <span class="name-plus">+</span>
+                </div>
+                <div class="name-row-left">
+                    <span class="name-script">Julián</span>
+                </div>
             </div>
 
             <div id="main-counter" class="counter-display"></div>
@@ -49,9 +55,33 @@
                 <p id="next-day-text" class="clock-phrase"></p>
             </div>
 
-            <button id="btn-to-gallery" class="btn-continue">Nuestros Recuerdos ❤️</button>
+            <button id="btn-to-gallery" class="btn-continue hidden" onclick="showGallery()">Nuestros Recuerdos ❤️</button>
         </div>
     </div>
+
+    <div id="block-3-container" class="main-content hidden">
+        <div class="magic-frame">
+            <div class="magic-frame-inner"></div>
+            <h2 class="title-luli">Momentos</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <img src="assets/images/foto2.jpg">
+                </div>
+                <div class="accordion-item">
+                    <img src="assets/images/foto1.jpg">
+                </div>
+                <div class="accordion-item">
+                    <img src="assets/images/foto3.jpg">
+                </div>
+            </div>
+            <p class="verse-container" style="font-size: 1.2rem;">
+                Cada foto es un pedacito de mi felicidad contigo.
+            </p>
+        </div>
+    </div>
+
+    <audio id="mainAudio" src="assets/audio/musica.mp3" loop preload="auto"></audio>
+    <audio id="clickSound" src="assets/audio/click.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>

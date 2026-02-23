@@ -3,11 +3,12 @@ const cover = document.getElementById('cover');
 const mainIcon = document.getElementById('mainIcon');
 const mainContent = document.getElementById('main-content');
 const mainAudio = document.getElementById('mainAudio');
+const musicDisk = document.getElementById('musicDisk');
 const clickSound = document.getElementById('clickSound');
 
 const startDate = new Date('2025-11-13T00:00:00');
 
-// 1. GENERAR ESTRELLAS
+// ESTRELLAS
 for (let i = 0; i < 150; i++) {
     const star = document.createElement('div');
     star.className = 'star';
@@ -19,22 +20,35 @@ for (let i = 0; i < 150; i++) {
     sky.appendChild(star);
 }
 
-// 2. EXPLOSIÓN Y MÚSICA
+// FIX AUDIO: Forzar carga y reproducción al clic
 mainIcon.addEventListener('click', () => {
-    if (mainAudio) mainAudio.play();
+    if (mainAudio) {
+        mainAudio.play().then(() => {
+            musicDisk.classList.add('playing');
+        }).catch(err => {
+            console.log("Esperando interacción para audio...");
+        });
+    }
     if (clickSound) clickSound.play();
+    
     cover.classList.add('explode');
     setTimeout(() => {
         cover.style.display = 'none';
         mainContent.classList.remove('hidden');
-        setTimeout(() => {
-            mainContent.classList.add('active');
-            startTypewriter();
-        }, 50);
+        startTypewriter();
     }, 800);
 });
 
-// 3. MÁQUINA DE ESCRIBIR
+musicDisk.addEventListener('click', () => {
+    if (mainAudio.paused) {
+        mainAudio.play();
+        musicDisk.classList.add('playing');
+    } else {
+        mainAudio.pause();
+        musicDisk.classList.remove('playing');
+    }
+});
+
 function startTypewriter() {
     const textContainer = document.getElementById('typewriter-text');
     const verso = "Eres la luz que ilumina mis noches,\nel sueño del que no quiero despertar.\nMi pequeña Luli,\ncontigo el mundo es un lugar mejor.";
@@ -51,8 +65,7 @@ function startTypewriter() {
             btn.className = "btn-continue";
             btn.innerHTML = "Ver nuestro tiempo juntos ❤️";
             btn.onclick = () => {
-                // Oculta el Bloque 1 y muestra el Contenedor del Bloque 2
-                document.getElementById('main-content').classList.add('hidden');
+                mainContent.classList.add('hidden');
                 document.getElementById('block-2-container').classList.remove('hidden');
                 startCounter();
                 setInterval(createCelebration, 400);
@@ -64,8 +77,12 @@ function startTypewriter() {
     type();
 }
 
-// 4. CONTADOR INTELIGENTE
 function startCounter() {
+    setTimeout(() => {
+        const btnGal = document.getElementById('btn-to-gallery');
+        if(btnGal) btnGal.classList.remove('hidden');
+    }, 5000);
+
     setInterval(() => {
         const now = new Date();
         let years = now.getFullYear() - startDate.getFullYear();
@@ -79,12 +96,8 @@ function startCounter() {
         if (months < 0) { years--; months += 12; }
 
         let html = "";
-        if (years > 0) {
-            html += `<div class="counter-box"><span>${years.toString().padStart(2, '0')}</span><label>Años</label></div>`;
-        }
         html += `<div class="counter-box"><span>${months.toString().padStart(2, '0')}</span><label>Meses</label></div>`;
         html += `<div class="counter-box"><span>${days.toString().padStart(2, '0')}</span><label>Días</label></div>`;
-        
         document.getElementById('main-counter').innerHTML = html;
 
         const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
@@ -92,25 +105,24 @@ function startCounter() {
         const h = Math.floor((diff / 3600000) % 24);
         const m = Math.floor((diff / 60000) % 60);
         const s = Math.floor((diff / 1000) % 60);
-        document.getElementById('next-day-text').innerHTML = `Faltan <b>${h}h ${m}m ${s}s</b> para sumarle un día más a nuestra historia`;
+        document.getElementById('next-day-text').innerHTML = `Faltan <b>${h}h ${m}m ${s}s</b> para agregar un día más a nuestra historia`;
     }, 1000);
 }
 
-// 5. EFECTO CELEBRACIÓN
+function showGallery() {
+    document.getElementById('block-2-container').classList.add('hidden');
+    document.getElementById('block-3-container').classList.remove('hidden');
+}
+
 function createCelebration() {
     const p = document.createElement('div');
     p.innerHTML = Math.random() > 0.5 ? '❤️' : '✨';
     p.style.position = 'fixed';
     p.style.left = Math.random() * 100 + 'vw';
     p.style.top = '100vh';
-    p.style.fontSize = (Math.random() * 20 + 10) + 'px';
-    p.style.zIndex = '1000';
+    p.style.fontSize = '20px';
+    p.style.zIndex = '500';
     document.body.appendChild(p);
-
-    p.animate([
-        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-        { transform: 'translateY(-110vh) rotate(360deg)', opacity: 0 }
-    ], { duration: 4000 });
-
+    p.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-110vh)', opacity: 0 }], { duration: 4000 });
     setTimeout(() => p.remove(), 4000);
 }
