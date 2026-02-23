@@ -6,27 +6,97 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #0b1d3a; /* azul oscuro */
+    background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
 }
 
+/* Contenedor de la Portada */
+.cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    /* Efecto difuso */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content {
+    text-align: center;
+}
+
+.main-icon {
+    width: 180px; /* Tamaño ajustable */
+    height: auto;
+    cursor: pointer;
+    /* Brillo inicial en la silueta */
+    filter: drop-shadow(0 0 15px white);
+    animation: glow-silhouette 2.5s infinite alternate ease-in-out;
+    transition: transform 0.2s active;
+}
+
+.phrase {
+    color: white;
+    font-family: sans-serif;
+    margin-top: 25px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+/* Animación de la silueta */
+@keyframes glow-silhouette {
+    0% { filter: drop-shadow(0 0 5px white); opacity: 0.8; }
+    100% { filter: drop-shadow(0 0 25px #ffffff); opacity: 1; }
+}
+
+/* Efecto de "Explosión" al entrar */
+.cover.explode {
+    opacity: 0;
+    transform: scale(2.5); /* Se agranda hacia la pantalla */
+    pointer-events: none;
+}
+
+/* --- ESTILOS DEL CIELO (DETRÁS) --- */
 .sky {
-    position: relative;      /* IMPORTANTE para posicionar las estrellas */
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
-/* Estilo de cada estrella */
 .star {
     position: absolute;
-    background: white;
     border-radius: 50%;
-    opacity: 0.8;
-    animation: twinkle 2s infinite alternate;
+    background: white;
+    box-shadow: 0 0 5px white;
+    animation: twinkle linear infinite;
 }
 
-/* Animación de parpadeo */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, white, rgba(255,255,255,0));
+    box-shadow: 0 0 10px white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: shoot 5s ease-out infinite;
+}
+
 @keyframes twinkle {
-    0% { opacity: 0.3; }
-    50% { opacity: 1; }
-    100% { opacity: 0.3; }
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes shoot {
+    0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; width: 0px; }
+    10% { opacity: 1; width: 120px; }
+    30% { transform: translateX(-1000px) translateY(1000px) rotate(-45deg); opacity: 0; width: 0px; }
+    100% { opacity: 0; }
 }
