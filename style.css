@@ -1,147 +1,276 @@
-/* style.css */
+/* style.css - Versión Corregida sin rayos de luz centrales */
 
 html, body {
-margin: 0;
-padding: 0;
-width: 100%;
-height: 100%;
-overflow: hidden;
-background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
 }
 
-/* Contenedor de la Portada */
+/* --- PORTADA --- */
 .cover {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 100;
-/* Efecto difuso */
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
-background: rgba(0, 0, 0, 0.3);
-transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content {
-text-align: center;
+.cover.explode {
+    opacity: 0;
+    transform: scale(2.5);
+    pointer-events: none;
 }
+
+.content { text-align: center; }
 
 .main-icon {
-width: 180px;
-/* Tamaño ajustable */
-height: auto;
-cursor: pointer;
-/* Brillo inicial en la silueta */
-filter: drop-shadow(0 0 15px white);
-animation: glow-silhouette 2.5s infinite alternate ease-in-out;
-transition: transform 0.2s active;
+    width: 180px;
+    height: auto;
+    cursor: pointer;
+    filter: drop-shadow(0 0 15px white);
+    animation: glow-silhouette 2.5s infinite alternate ease-in-out;
 }
 
-/* Actualiza tu clase .phrase con esto */
 .phrase {
-color: white;
-font-family: 'Great Vibes', cursive;
-font-size: 2.8rem;
-margin-top: 25px;
-text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-opacity: 0.9;
-
-/* Añadimos la animación aquí */
-animation: floating 4s ease-in-out infinite;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    margin-top: 25px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    opacity: 0.9;
+    animation: floating 4s ease-in-out infinite;
 }
 
-/* El código de la animación de balanceo */
-@keyframes floating {
-0% {
-transform: translateY(0px);
-}
-50% {
-transform: translateY(-10px);
-/* Sube un poco */
-}
-100% {
-transform: translateY(0px);
-/* Vuelve a su lugar */
-}
-}
-
-
-/* Animación de la silueta */
-@keyframes glow-silhouette {
-0% { filter: drop-shadow(0 0 5px white);
-opacity: 0.8;
-}
-100% { filter: drop-shadow(0 0 25px #ffffff);
-opacity: 1;
-}
-}
-
-/* Efecto de "Explosión" al entrar */
-.cover.explode {
-opacity: 0;
-transform: scale(2.5);
-/* Se agranda hacia la pantalla */
-pointer-events: none;
-}
-
-/* --- ESTILOS DEL CIELO (DETRÁS) --- */
+/* --- CIELO DE FONDO --- */
 .sky {
-position: relative;
-width: 100%;
-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .star {
-position: absolute;
-border-radius: 50%;
-background: white;
-box-shadow: 0 0 5px white;
-animation: twinkle linear infinite;
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 5px white;
+    animation: twinkle linear infinite;
 }
 
 .shooting-star {
-position: absolute;
-width: 2px;
-height: 2px;
-background: linear-gradient(90deg, white, rgba(255,255,255,0));
-box-shadow: 0 0 10px white;
-border-radius: 50%;
-opacity: 0;
-animation: shoot 5s ease-out infinite;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, white, rgba(255,255,255,0));
+    box-shadow: 0 0 10px white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: shoot 5s ease-out infinite;
 }
 
-@keyframes twinkle {
-0%, 100% { opacity: 0.3;
-transform: scale(0.8);
-}
-50% { opacity: 1;
-transform: scale(1.1);
-}
+/* --- BLOQUE PRINCIPAL (LULI) --- */
+.hidden {
+    display: none !important;
 }
 
-@keyframes shoot {
-0% { transform: translateX(0) translateY(0) rotate(-45deg);
-opacity: 0;
-width: 0px;
+.main-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 50;
+    opacity: 0;
+    transition: all 1.5s ease-out;
+    width: 95%;
+    max-width: 450px;
 }
-10% { opacity: 1;
-width: 120px;
+
+.main-content.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
-30% { transform: translateX(-1000px) translateY(1000px) rotate(-45deg);
-opacity: 0;
-width: 0px;
+
+.magic-frame {
+    position: relative;
+    padding: 30px 15px;
+    border-radius: 35px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    animation: border-flash 2s ease-in-out infinite;
+    /* Borde sutil para contener la luz */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
-100% { opacity: 0;
+
+/* LUCES CORREGIDAS: Haz de luz ultra fino para evitar el efecto cruz/linterna */
+.magic-frame::before, .magic-frame::after {
+    content: '';
+    position: absolute;
+    width: 250%; 
+    height: 250%;
+    background: conic-gradient(
+        transparent 0deg, 
+        transparent 170deg, 
+        white 180deg, 
+        transparent 190deg,
+        transparent 360deg
+    );
+    animation: rotate-light 4s linear infinite;
+    z-index: -1;
+    top: -75%;
+    left: -75%;
 }
+
+.magic-frame::after {
+    animation-delay: -2s;
+}
+
+/* TAPA INTERNA CORREGIDA: Bloquea la luz central */
+.magic-frame-inner {
+    position: absolute;
+    inset: 4px; 
+    /* Subimos un poco la opacidad a 0.7 para que bloquee los rayos, pero aún veas estrellas */
+    background: rgba(9, 10, 15, 0.7); 
+    border-radius: 31px;
+    z-index: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.title-luli {
+    font-family: 'Pinyon Script', cursive;
+    color: white;
+    font-size: 3.8rem;
+    margin: 10px 0 20px 0;
+    text-shadow: 0 0 15px white;
+    position: relative;
+    z-index: 5; /* Asegura que esté sobre la tapa */
+}
+
+.image-luli {
+    width: 90%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    position: relative;
+    z-index: 5;
+}
+
+/* --- ESTILOS DEL VERSO --- */
+.verse-container {
+    position: relative;
+    z-index: 5;
+    margin-top: 25px;
+    font-family: 'Great Vibes', cursive;
+    color: #ffffff;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    min-height: 80px;
+}
+
+.verse-container::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+    margin-left: 5px;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes border-flash {
+    0%, 100% { box-shadow: 0 0 15px rgba(255,255,255,0.1); }
+    50% { box-shadow: 0 0 35px rgba(255,255,255,0.4); }
 }
 
 @keyframes floating {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(1deg); } /* Se inclina un poquito */
-    100% { transform: translateY(0px) rotate(0deg); }
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes glow-silhouette {
+    0% { filter: drop-shadow(0 0 5px white); opacity: 0.8; }
+    100% { filter: drop-shadow(0 0 25px white); opacity: 1; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes shoot {
+    0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; width: 0px; }
+    10% { opacity: 1; width: 120px; }
+    30% { transform: translateX(-1000px) translateY(1000px) rotate(-45deg); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes rotate-light {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- BOTÓN FLOTANTE DE MÚSICA --- */
+.music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0; /* Empieza oculto y aparecerá con el JS */
+    pointer-events: none;
+}
+
+.music-control.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.music-control i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Animación para que el botón gire suavemente cuando suena */
+.music-control.playing {
+    animation: rotate-music 4s linear infinite;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes rotate-music {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }

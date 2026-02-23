@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>luli</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-
+    <title>Para Luli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <audio id="mainAudio" loop>
+        <source src="assets/audio/cancion.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="clickSound">
+        <source src="assets/audio/click.mp3" type="audio/mpeg">
+    </audio>
+
+
     <div class="sky" id="sky"></div>
 
     <div id="cover" class="cover">
@@ -17,6 +24,18 @@
             <h1 class="phrase">Eres el sueño, que no quiero dejar de soñar</h1>
         </div>
     </div>
+
+    <div id="main-content" class="main-content hidden">
+        <div class="magic-frame">
+            <div class="magic-frame-inner"></div>
+
+            <h2 class="title-luli">Mi pequeña Luli</h2>
+            <img src="assets/images/mickey.png" class="image-luli" alt="Imagen Especial">
+
+            <div id="typewriter-text" class="verse-container"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
