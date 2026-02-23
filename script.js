@@ -1,25 +1,23 @@
-const startDate = new Date("2023-01-01");
+// script.js
 
-function updateCounter() {
-  const now = new Date();
-  const diff = now - startDate;
+const sky = document.getElementById('sky');
+const numStars = 200; // más estrellas si quieres
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const years = Math.floor(days / 365);
-  const months = Math.floor((days % 365) / 30);
-  const remainingDays = (days % 365) % 30;
+for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
 
-  document.getElementById("years").textContent = years;
-  document.getElementById("months").textContent = months;
-  document.getElementById("days").textContent = remainingDays;
+    // posición aleatoria dentro del contenedor
+    star.style.top = Math.random() * 100 + 'vh';   // usando vh para pantalla completa
+    star.style.left = Math.random() * 100 + 'vw';  // usando vw para pantalla completa
+
+    // tamaño aleatorio
+    const size = Math.random() * 2 + 1; // de 1px a 3px
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+
+    // velocidad de parpadeo aleatoria
+    star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+
+    sky.appendChild(star);
 }
-
-function updateClock() {
-  const now = new Date();
-  const time = now.toLocaleTimeString();
-  document.getElementById("clock").textContent = time;
-}
-
-setInterval(updateClock, 1000);
-updateCounter();
-updateClock();
