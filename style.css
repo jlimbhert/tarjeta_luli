@@ -1,4 +1,4 @@
-html, body {
+Html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -7,13 +7,9 @@ html, body {
     background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
 }
 
-/* --- PORTADA --- */
 .cover {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,86 +20,32 @@ html, body {
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cover.explode {
-    opacity: 0;
-    transform: scale(2.5);
-    pointer-events: none;
-}
+.cover.explode { opacity: 0; transform: scale(2.5); pointer-events: none; }
 
-.content { text-align: center; }
+.main-icon { width: 180px; cursor: pointer; filter: drop-shadow(0 0 15px white); animation: glow-silhouette 2.5s infinite alternate ease-in-out; }
 
-.main-icon {
-    width: 180px;
-    height: auto;
-    cursor: pointer;
-    filter: drop-shadow(0 0 15px white);
-    animation: glow-silhouette 2.5s infinite alternate ease-in-out;
-}
+.phrase { color: white; font-family: 'Great Vibes'; font-size: 2.8rem; margin-top: 25px; text-shadow: 0 0 15px rgba(255,255,255,0.4); text-align: center; }
 
-.phrase {
-    color: white;
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.8rem;
-    margin-top: 25px;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    opacity: 0.9;
-    animation: floating 4s ease-in-out infinite;
-}
+.sky { position: fixed; inset: 0; z-index: 1; }
 
-/* --- CIELO DE FONDO --- */
-.sky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+.star { position: absolute; border-radius: 50%; background: white; animation: twinkle linear infinite; }
 
-.star {
-    position: absolute;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 5px white;
-    animation: twinkle linear infinite;
-}
-
-.shooting-star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: linear-gradient(90deg, white, rgba(255,255,255,0));
-    box-shadow: 0 0 10px white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: shoot 5s ease-out infinite;
-}
-
-/* --- BLOQUE PRINCIPAL --- */
 .hidden { display: none !important; }
 
 .main-content {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%);
     z-index: 50;
-    opacity: 0;
-    transition: all 1.5s ease-out;
     width: 95%;
     max-width: 450px;
-}
-
-.main-content.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 .magic-frame {
     position: relative;
     padding: 30px 15px;
     border-radius: 35px;
-    background: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -112,99 +54,66 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.magic-frame::before, .magic-frame::after {
-    content: '';
-    position: absolute;
-    width: 250%; 
-    height: 250%;
-    background: conic-gradient(transparent 170deg, white 180deg, transparent 190deg);
-    animation: rotate-light 4s linear infinite;
-    z-index: -1;
-    top: -75%;
-    left: -75%;
-}
-
-.magic-frame::after { animation-delay: -2s; }
-
 .magic-frame-inner {
     position: absolute;
-    inset: 4px; 
-    background: rgba(9, 10, 15, 0.7); 
+    inset: 4px;
+    background: rgba(9, 10, 15, 0.7);
     border-radius: 31px;
     z-index: 0;
     backdrop-filter: blur(8px);
 }
 
-.title-luli {
-    font-family: 'Pinyon Script', cursive;
-    color: white;
-    font-size: 3.8rem;
-    margin: 10px 0 20px 0;
-    text-shadow: 0 0 15px white;
-    position: relative;
-    z-index: 5;
-    text-align: center; /* CENTRADO CORREGIDO */
-    width: 100%;
-}
+.title-luli { font-family: 'Pinyon Script'; color: white; font-size: 3.8rem; margin: 10px 0 20px 0; text-align: center; width: 100%; position: relative; z-index: 5; }
 
-.image-luli {
-    width: 90%;
-    max-width: 320px;
-    height: auto;
-    border-radius: 20px;
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
-    position: relative;
-    z-index: 5;
-}
+.image-luli { width: 90%; max-width: 320px; border-radius: 20px; position: relative; z-index: 5; }
 
-.verse-container {
-    position: relative;
-    z-index: 5;
-    margin-top: 25px;
-    font-family: 'Great Vibes', cursive;
-    color: #ffffff;
-    font-size: 1.6rem;
-    line-height: 1.4;
-    text-align: center;
-    padding: 0 20px 20px 20px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-    min-height: 80px;
-}
+.verse-container { position: relative; z-index: 5; margin-top: 25px; font-family: 'Great Vibes'; color: white; font-size: 1.6rem; text-align: center; min-height: 80px; }
 
-/* --- ANIMACIONES --- */
-@keyframes rotate-light { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes border-flash { 0%, 100% { box-shadow: 0 0 15px rgba(255,255,255,0.1); } 50% { box-shadow: 0 0 35px rgba(255,255,255,0.4); } }
-@keyframes floating { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-10px) rotate(1deg); } }
-@keyframes glow-silhouette { 0% { filter: drop-shadow(0 0 5px white); opacity: 0.8; } 100% { filter: drop-shadow(0 0 25px white); opacity: 1; } }
-@keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
-@keyframes shoot { 
-    0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; width: 0px; }
-    10% { opacity: 1; width: 120px; }
-    30% { transform: translateX(-1000px) translateY(1000px) rotate(-45deg); opacity: 0; }
-    100% { opacity: 0; }
-}
-
-/* --- BOTÓN DE MÚSICA --- */
-.music-control {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
+.btn-continue {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: 'Special Elite';
+    font-size: 1rem;
     cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.3s;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
 }
 
-.music-control.visible { opacity: 1; pointer-events: auto; }
-.music-control.playing { animation: rotate-music 4s linear infinite; }
-@keyframes rotate-music { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.btn-continue:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); box-shadow: 0 0 25px rgba(255,255,255,0.4); }
+
+/* --- CONTADOR --- */
+.counter-photo-bg {
+    background-image: url('assets/images/tu-foto.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 500px;
+}
+
+.photo-overlay { background: rgba(0, 0, 0, 0.5) !important; }
+
+.name-script { font-family: 'Pinyon Script'; color: white; font-size: 3.5rem; display: block; z-index: 5; position: relative; }
+
+.name-plus { color: white; font-family: 'Special Elite'; font-size: 1.5rem; z-index: 5; position: relative; }
+
+.counter-display { display: flex; justify-content: center; gap: 15px; width: 100%; margin: 20px 0; z-index: 5; position: relative; }
+
+.counter-box { text-align: center; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 15px; min-width: 80px; border: 1px solid rgba(255,255,255,0.2); }
+
+.counter-box span { font-size: 3rem; font-family: 'Special Elite'; color: white; display: block; }
+
+.counter-box label { font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+
+.next-day-container { position: relative; z-index: 5; background: rgba(0, 0, 0, 0.6); padding: 10px; border-radius: 20px; width: 85%; text-align: center; }
+
+.clock-phrase { color: white; font-family: 'Special Elite'; font-size: 0.8rem; margin: 0; }
+
+@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes glow-silhouette { 0% { filter: drop-shadow(0 0 5px white); } 100% { filter: drop-shadow(0 0 25px white); } }
+@keyframes border-flash { 0%, 100% { box-shadow: 0 0 15px rgba(255,255,255,0.1); } 50% { box-shadow: 0 0 35px rgba(255,255,255,0.4); } }
