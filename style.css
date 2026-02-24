@@ -1,7 +1,7 @@
 /* =========================================
    1. CONFIGURACIÓN GENERAL (HTML & BODY)
    ========================================= */
-Html, body {
+html, body {
 margin: 0;
 padding: 0;
 width: 100%;
@@ -9,7 +9,6 @@ height: 100%;
 overflow: hidden;
 background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
 }
-
 
 .sky {
 position: fixed;
@@ -69,7 +68,6 @@ justify-content: center;
 align-items: center;
 overflow: hidden;
 transition: opacity 1s ease, transform 1s ease;
-cursor: default;
 }
 
 .cover::before {
@@ -102,7 +100,6 @@ width: 210px;
 cursor: pointer;
 filter: drop-shadow(0 0 18px rgba(255,255,255,0.9)) drop-shadow(0 0 35px rgba(255,120,150,0.45));
 animation: heartbeat 1.5s ease-in-out infinite;
-transition: transform 0.3s ease;
 }
 
 .phrase {
@@ -119,7 +116,6 @@ text-shadow: 0 0 10px rgba(0,0,0,0.5);
 /* =========================================
    4. BLOQUE 1 (TEXTO Y FOTO LULI)
    ========================================= */
-
 .main-content {
 position: fixed;
 top: 50%;
@@ -132,6 +128,12 @@ display: flex;
 flex-direction: column;
 }
 
+/* Forzar visualización de bloques activos */
+.main-content:not(.hidden) {
+display: flex !important;
+animation: fadeIn 0.8s ease forwards;
+}
+
 .magic-frame {
 position: relative;
 padding: 30px 20px;
@@ -141,7 +143,6 @@ flex-direction: column;
 align-items: center;
 border: 1px solid rgba(255, 255, 255, 0.2);
 overflow: hidden;
-/* Cambiado a hidden para que nada sobresalga */
 gap: 15px;
 }
 
@@ -159,25 +160,13 @@ font-family: 'Pinyon Script', cursive;
 color: white;
 font-size: 3.2rem;
 margin: 0;
-text-align: center;
 }
 
-/* LA IMAGEN AHORA SÍ OBEDECERÁ */
 .image-luli-png {
 width: 230px !important;
-/* Ancho pequeño y controlado */
 height: auto !important;
-display: block;
-margin: 0 auto;
 filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
 animation: glow-silhouette 3s ease-in-out infinite alternate;
-}
-
-.img-wrapper {
-width: 100%;
-display: flex;
-justify-content: center;
-padding: 10px 0;
 }
 
 .verse-container {
@@ -186,62 +175,36 @@ color: white;
 font-size: 1.6rem;
 line-height: 1.4;
 text-align: center;
-width: 100%;
 }
-
 
 /* =========================================
    5. BLOQUE 2 (CONTADOR Y FOTO FONDO)
    ========================================= */
-
 #block-2 {
-/* Altura más grande para que el botón no empuje el contador al centro */
-min-height: 650px !important;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding: 40px 20px;
+min-height: 600px !important;
 background-image: url('assets/images/foto1.jpg');
 background-size: cover;
 background-position: center;
-border-radius: 40px;
-position: relative;
-overflow: hidden;
+justify-content: space-between;
 }
 
-/* EL "VELO BLANCO" (Capa traslúcida sobre la foto) */
 .photo-overlay {
 background: rgba(255, 255, 255, 0.4) !important;
-/* Blanco apenitas opaco */
 backdrop-filter: blur(3px);
-/* Un leve desenfoque para dar efecto cristal */
--webkit-backdrop-filter: blur(3px);
-position: absolute;
-inset: 0;
-z-index: 0;
 }
 
-/* Aseguramos que todo el contenido esté sobre el velo blanco */
-.names-container, .counter-section, #btn-to-gallery {
-position: relative;
-z-index: 10;
-}
-
-/* NOMBRES EN ESCALERA (Ajuste de grosor) */
 .names-container {
 width: 100%;
 display: flex;
 flex-direction: column;
-gap: 5px;
+z-index: 10;
 }
 
 .name-luli, .name-limbert {
 font-family: 'Pinyon Script', cursive;
 color: #000000;
-font-size: 3.8rem;
-/* Un pelín más grandes */
+font-size: 3.5rem;
 font-weight: bold;
-/* Para que no se pierda la fuente fina */
 text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
 }
 
@@ -249,120 +212,82 @@ text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
 }
 .name-limbert { text-align: right;
 }
-
-.name-plus {
-font-family: 'Special Elite', cursive;
+.name-plus { font-family: 'Special Elite', cursive;
 color: #000000;
-font-size: 2.5rem;
+font-size: 2rem;
 text-align: center;
 }
 
-/* SECCIÓN DEL CONTADOR */
-.counter-section {
+.counter-section { width: 100%;
+z-index: 10;
 margin-top: auto;
 text-align: center;
-width: 100%;
 }
-
-.counter-display {
-display: flex;
-gap: 12px;
+.counter-display { display: flex;
+gap: 10px;
 justify-content: center;
-margin-bottom: 10px;
-/* Reducido espacio con la frase */
+margin-bottom: 15px;
 }
 
-/* CUADROS DEL CONTADOR (Negros, altos y semitransparentes) */
 .counter-box {
-/* Fondo negro con 80% de opacidad para que sea semi-transparente */
-background: rgba(0, 0, 0, 0.8) !important;
-
-padding: 25px 15px;
-/* Altura considerable */
-border-radius: 20px;
-border: 1px solid rgba(255, 255, 255, 0.2);
-/* Un borde finito para que brille el cuadro */
-min-width: 100px;
+background: rgba(0, 0, 0, 0.85) !important;
+padding: 20px 10px;
+border-radius: 15px;
+min-width: 90px;
 display: flex;
 flex-direction: column;
-justify-content: center;
 align-items: center;
-gap: 8px;
-backdrop-filter: blur(5px);
-/* Efecto de cristal esmerilado dentro del cuadro */
 }
 
-/* NÚMEROS BLANCOS */
-.counter-box span {
-display: block;
-font-size: 3rem;
+.counter-box span { color: white !important;
+font-size: 2.5rem;
 font-family: 'Special Elite', cursive;
-color: #ffffff !important;
-line-height: 1;
 }
-
-/* ETIQUETAS BLANCAS (Meses / Días) */
-.counter-box label {
-color: #ffffff !important;
-font-size: 0.75rem;
+.counter-box label { color: white !important;
+font-size: 0.7rem;
 text-transform: uppercase;
-font-weight: bold;
-letter-spacing: 1.5px;
 }
 
-
-/* FRASE DEL RELOJ */
-.clock-phrase {
-color: #000000 !important;
+/* Usamos # porque en tu HTML es un ID, no una clase */
+#next-day-text {
+color: #ffffff !important;
 font-family: 'Special Elite', cursive;
 font-size: 0.9rem;
 font-weight: bold;
-margin: 5px 0;
-/* Espacio mínimo */
+margin: 10px auto;
+padding: 10px 15px;
+background: rgba(0, 0, 0, 0.6);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border-radius: 15px;
+border: 1px solid rgba(255, 255, 255, 0.2);
+display: inline-block;
+text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* EL BOTÓN (Ajuste de espacio) */
-#btn-to-gallery {
-margin-top: 15px !important;
-/* Reducido para que no empuje todo hacia arriba */
-margin-bottom: 10px;
-background: rgba(0, 0, 0, 0.8);
-/* Botón negro para que combine con los cuadros */
-color: white;
+.next-day-container {
+text-align: center;
+width: 100%;
+margin-top: 10px;
 }
+
 
 /* =========================================
-   6. BLOQUE 3 (GALERÍA MOMENTOS) - AJUSTADO
+   6. BLOQUE 3 (GALERÍA ACORDEÓN)
    ========================================= */
-
-#block-3-container .magic-frame {
-/* Mismo alto que el bloque 2 para mantener armonía */
-min-height: 580px !important;
-justify-content: flex-start;
-padding: 30px 20px;
-overflow: hidden;
+#block-3-container .magic-frame { min-height: 580px !important;
 }
-
-/* Título centrado */
-.title-gallery {
-font-family: 'Pinyon Script', cursive;
+.title-gallery { font-family: 'Pinyon Script', cursive;
 color: white;
-font-size: 3rem;
-margin-bottom: 25px;
+font-size: 2.8rem;
 text-align: center;
-/* Título centrado */
-width: 100%;
-text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
-/* CONTENEDOR DE LA GALERÍA (Achicado un poco) */
 .accordion-container {
 display: flex;
 width: 100%;
-height: 380px;
-/* Reducido de 450px a 380px para que no sea tan alto */
+height: 350px;
 gap: 8px;
-margin-bottom: 20px;
 }
 
 .accordion-item {
@@ -371,179 +296,106 @@ overflow: hidden;
 border-radius: 15px;
 border: 1.5px solid rgba(255, 255, 255, 0.3);
 transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-cursor: pointer;
 }
 
-.accordion-item:hover {
-flex: 4;
-/* Un poco menos exagerado que antes */
-border-color: rgba(255, 255, 255, 0.7);
+.accordion-item:hover { flex: 4;
 }
-
-.accordion-item img {
-width: 100%;
+.accordion-item img { width: 100%;
 height: 100%;
 object-fit: cover;
 }
 
-/* Verso de la galería */
+/* Verso de la galería - Corregido */
 .verse-gallery {
-font-family: 'Pinyon Script', cursive;
-color: white;
-font-size: 1.3rem;
+font-family: 'Pinyon Script', cursive !important;
+/* Forzamos la fuente cursiva */
+color: #ffffff !important;
+/* Forzamos el color blanco */
+font-size: 1.8rem;
+/* Un poco más grande para que se lea bien */
 text-align: center;
-margin: 10px 0;
+margin: 15px 0;
+text-shadow: 0 0 8px rgba(0,0,0,0.5);
+/* Sombra para que resalte sobre el fondo */
+width: 100%;
 }
-
-/* Espacio para el nuevo botón que aparecerá */
-#btn-to-block4 {
-margin-top: 15px !important;
-}
-
-
 
 /* =========================================
    7. COMPONENTES GLOBALES (BOTONES)
    ========================================= */
-.hidden {
-display: none !important;
+.hidden { display: none !important;
 }
 
 .btn-continue {
-background: rgba(255, 255, 255, 0.1);
+background: rgba(0, 0, 0, 0.7);
 color: white;
-border: 1px solid rgba(255, 255, 255, 0.4);
-padding: 10px 22px;
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 12px 25px;
 border-radius: 30px;
 font-family: 'Special Elite', cursive;
-font-size: 0.9rem;
 cursor: pointer;
-backdrop-filter: blur(5px);
-transition: all 0.3s ease;
-margin-top: 50px;
+transition: 0.3s;
+margin: 10px 0;
 }
 
 /* =========================================
-   8. BLOQUE 4: MENSAJE EN LA BOTELLA
+   8. BLOQUE 4: BOTELLA Y MENSAJE
    ========================================= */
-/* Animación de flotar */
-@keyframes wave {
-0% { transform: translateY(0) rotate(0deg);
-}
-50% { transform: translateY(-20px) rotate(5deg);
-}
-100% { transform: translateY(0) rotate(0deg);
-}
-}
-
 .floating-bottle {
-width: 150px;
-cursor: pointer;
+width: 130px;
 animation: wave 4s ease-in-out infinite;
-filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
-transition: all 0.5s;
+cursor: pointer;
 }
 
-.floating-bottle.open {
-transform: scale(2) opacity(0);
-pointer-events: none;
-}
-
-/* El pergamino/papel que aparece */
 .message-paper {
 background: #fdf5e6;
-/* Color papel antiguo */
 color: #2c1e16;
-padding: 30px;
+padding: 20px;
 border-radius: 5px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 font-family: 'Special Elite', cursive;
-line-height: 1.6;
-position: relative;
-max-width: 80%;
-transform: rotate(-2deg);
-animation: fadeIn 1s forwards;
+max-width: 85%;
+transform: rotate(-1deg);
 }
 
-/* Efecto de bordes quemados o rotos */
-.paper-content {
-border: 1px solid rgba(0,0,0,0.1);
-padding: 10px;
+.paper-content { display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
 }
 
 /* =========================================
-   9. BLOQUE FINAL: DESPEDIDA (CONTINUARÁ)
+   9. BLOQUE FINAL (DESPEDIDA)
    ========================================= */
-
-#block-closing-container {
-    /* Estas reglas son vitales para que el bloque se vea */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 400px;
-    z-index: 100;
-}
-
 #block-closing-container .magic-frame {
-    min-height: 400px; /* Un poco más bajo que los otros, para que sea sutil */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    text-align: center;
-    border-radius: 40px;
-    background: rgba(0, 0, 0, 0.2); /* Un toque oscuro suave */
+min-height: 350px;
+background: rgba(0, 0, 0, 0.4);
+border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-/* Título de Continuará */
-#block-closing-container h2 {
-    font-family: 'Pinyon Script', cursive;
-    color: white;
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-}
-
-/* El texto de despedida */
-#block-closing-container .verse-container {
-    font-family: 'Special Elite', cursive;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
 
 /* =========================================
     ANIMACIONES
    ========================================= */
+@keyframes fadeIn { from { opacity: 0;
+} to { opacity: 1;
+} }
+@keyframes wave { 0%, 100% { transform: translateY(0) rotate(0deg);
+} 50% { transform: translateY(-15px) rotate(5deg);
+} }
 @keyframes rotate-disk { from { transform: rotate(0deg);
 } to { transform: rotate(360deg);
 } }
-@keyframes heartbeat {
-0%, 100% { transform: scale(1);
-}
-50% { transform: scale(1.1);
-}
-}
-@keyframes phraseReveal {
-0% { transform: translateY(20px);
+@keyframes heartbeat { 0%, 100% { transform: scale(1);
+} 50% { transform: scale(1.05);
+} }
+@keyframes phraseReveal { from { transform: translateY(20px);
 opacity: 0;
-filter: blur(5px);
-}
-100% { transform: translateY(0);
+} to { transform: translateY(0);
 opacity: 1;
-filter: blur(0);
-}
-}
+} }
 @keyframes twinkle { 0%, 100% { opacity: 0.3;
 } 50% { opacity: 1;
 } }
-@keyframes glow-silhouette {
-from { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
-}
-to { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
-}
-}
+@keyframes glow-silhouette { from { filter: drop-shadow(0 0 5px white);
+} to { filter: drop-shadow(0 0 15px white);
+} }
