@@ -62,7 +62,7 @@ startTypewriter();
    ========================================= */
 function startTypewriter() {
 const textContainer = document.getElementById('typewriter-text');
-const verso = "\nQuiero perderme en tu laberinto\nQuiero ser tu esclavo\nmorirme contigo.";
+const verso = "\nEra tu historia\nSe cruzo con la mia\nTanta gente, tanta gente\nHay fuera\ny coincidir aquel día...";
 let i = 0;
 textContainer.innerHTML = "";
 
@@ -196,5 +196,24 @@ bottle.style.opacity = "0";
 setTimeout(() => {
 bottle.classList.add('hidden');
 paper.classList.remove('hidden'); // Aparece el mensaje
+}, 500);
+}
+
+// Función para ir desde el mensaje de la botella al bloque de despedida
+function showClosing() {
+document.getElementById('block-4-container').classList.add('hidden');
+document.getElementById('block-closing-container').classList.remove('hidden');
+}
+
+// Función para intentar cerrar el navegador
+function closeApp() {
+// Intenta cerrar la pestaña actual
+window.close();
+
+// Si el navegador bloquea window.close() (por seguridad),
+// redirigimos a una página neutra o lanzamos un mensaje
+setTimeout(() => {
+alert("¡Gracias por visitar nuestra historia! Puedes cerrar esta pestaña.");
+// Opcional: window.location.href = "about:blank";
 }, 500);
 }

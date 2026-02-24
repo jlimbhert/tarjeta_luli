@@ -428,43 +428,91 @@ margin-top: 50px;
    ========================================= */
 /* Animación de flotar */
 @keyframes wave {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0deg); }
+0% { transform: translateY(0) rotate(0deg);
+}
+50% { transform: translateY(-20px) rotate(5deg);
+}
+100% { transform: translateY(0) rotate(0deg);
+}
 }
 
 .floating-bottle {
-    width: 150px;
-    cursor: pointer;
-    animation: wave 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
-    transition: all 0.5s;
+width: 150px;
+cursor: pointer;
+animation: wave 4s ease-in-out infinite;
+filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
+transition: all 0.5s;
 }
 
 .floating-bottle.open {
-    transform: scale(2) opacity(0);
-    pointer-events: none;
+transform: scale(2) opacity(0);
+pointer-events: none;
 }
 
 /* El pergamino/papel que aparece */
 .message-paper {
-    background: #fdf5e6; /* Color papel antiguo */
-    color: #2c1e16;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    font-family: 'Special Elite', cursive;
-    line-height: 1.6;
-    position: relative;
-    max-width: 80%;
-    transform: rotate(-2deg);
-    animation: fadeIn 1s forwards;
+background: #fdf5e6;
+/* Color papel antiguo */
+color: #2c1e16;
+padding: 30px;
+border-radius: 5px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+font-family: 'Special Elite', cursive;
+line-height: 1.6;
+position: relative;
+max-width: 80%;
+transform: rotate(-2deg);
+animation: fadeIn 1s forwards;
 }
 
 /* Efecto de bordes quemados o rotos */
 .paper-content {
-    border: 1px solid rgba(0,0,0,0.1);
-    padding: 10px;
+border: 1px solid rgba(0,0,0,0.1);
+padding: 10px;
+}
+
+/* =========================================
+   9. BLOQUE FINAL: DESPEDIDA (CONTINUARÁ)
+   ========================================= */
+
+#block-closing-container {
+    /* Estas reglas son vitales para que el bloque se vea */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 100;
+}
+
+#block-closing-container .magic-frame {
+    min-height: 400px; /* Un poco más bajo que los otros, para que sea sutil */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 40px;
+    background: rgba(0, 0, 0, 0.2); /* Un toque oscuro suave */
+}
+
+/* Título de Continuará */
+#block-closing-container h2 {
+    font-family: 'Pinyon Script', cursive;
+    color: white;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+/* El texto de despedida */
+#block-closing-container .verse-container {
+    font-family: 'Special Elite', cursive;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 
