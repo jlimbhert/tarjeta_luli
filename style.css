@@ -1,3 +1,6 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL (HTML & BODY)
+   ========================================= */
 Html, body {
 margin: 0;
 padding: 0;
@@ -7,13 +10,14 @@ overflow: hidden;
 background: radial-gradient(circle at 50% 50%, #1b2735 0%, #090a0f 100%);
 }
 
-/* CAPA DEL CIELO */
+
 .sky {
 position: fixed;
 inset: 0;
 z-index: 1;
 pointer-events: none;
 }
+
 .star {
 position: absolute;
 background: white;
@@ -21,7 +25,9 @@ border-radius: 50%;
 animation: twinkle linear infinite;
 }
 
-/* BOTÓN MÚSICA - Modificado para ocultarse al inicio */
+/* =========================================
+   2. CONTROL DE MÚSICA (DISCO)
+   ========================================= */
 .music-control {
 position: fixed;
 top: 20px;
@@ -37,14 +43,11 @@ justify-content: center;
 align-items: center;
 border: 1px solid rgba(255,255,255,0.3);
 backdrop-filter: blur(5px);
-
-/* Nueva lógica de visibilidad */
 opacity: 0;
 pointer-events: none;
 transition: opacity 1s ease;
 }
 
-/* Clase para mostrar el disco desde JS */
 .music-control.visible {
 opacity: 1;
 pointer-events: auto;
@@ -54,17 +57,9 @@ pointer-events: auto;
 animation: rotate-disk 4s linear infinite;
 }
 
-@keyframes rotate-disk {
-from { transform: rotate(0deg);
-}
-to { transform: rotate(360deg);
-}
-}
-
-/* =========================
-   PORTADA (CORREGIDA)
-   ========================= */
-
+/* =========================================
+   3. PORTADA (COVER)
+   ========================================= */
 .cover {
 position: fixed;
 inset: 0;
@@ -75,10 +70,8 @@ align-items: center;
 overflow: hidden;
 transition: opacity 1s ease, transform 1s ease;
 cursor: default;
-/* Cambiado de pointer a default */
 }
 
-/* EFECTO VIDRIO */
 .cover::before {
 content: "";
 position: absolute;
@@ -87,14 +80,11 @@ background: rgba(15, 18, 30, 0.3);
 backdrop-filter: blur(12px);
 -webkit-backdrop-filter: blur(12px);
 z-index: 1;
-/* El vidrio se queda en nivel 1 */
 }
 
-/* CONTENEDOR DE ICONO Y FRASE */
 .cover-content {
 position: relative;
 z-index: 10;
-/* Forzamos a que esté por encima del vidrio */
 text-align: center;
 display: flex;
 flex-direction: column;
@@ -107,17 +97,14 @@ transform: scale(1.5);
 pointer-events: none;
 }
 
-/* ICONO PRINCIPAL */
 .main-icon {
 width: 210px;
 cursor: pointer;
-filter: drop-shadow(0 0 18px rgba(255,255,255,0.9))
-drop-shadow(0 0 35px rgba(255,120,150,0.45));
+filter: drop-shadow(0 0 18px rgba(255,255,255,0.9)) drop-shadow(0 0 35px rgba(255,120,150,0.45));
 animation: heartbeat 1.5s ease-in-out infinite;
 transition: transform 0.3s ease;
 }
 
-/* FRASE */
 .phrase {
 color: white;
 font-family: 'Great Vibes', cursive;
@@ -129,7 +116,10 @@ animation-delay: 0.5s;
 text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* CONTENIDO PRINCIPAL */
+/* =========================================
+   4. BLOQUE 1 (TEXTO Y FOTO LULI)
+   ========================================= */
+
 .main-content {
 position: fixed;
 top: 50%;
@@ -137,101 +127,134 @@ left: 50%;
 transform: translate(-50%, -50%);
 z-index: 100;
 width: 90%;
-max-width: 420px;
+max-width: 400px;
+display: flex;
+flex-direction: column;
 }
 
-.hidden { display: none !important;
-}
-
-/* MARCO */
 .magic-frame {
 position: relative;
 padding: 30px 20px;
-border-radius: 35px;
+border-radius: 40px;
 display: flex;
 flex-direction: column;
 align-items: center;
+border: 1px solid rgba(255, 255, 255, 0.2);
 overflow: hidden;
-border: 1px solid rgba(255,255,255,0.1);
+/* Cambiado a hidden para que nada sobresalga */
+gap: 15px;
 }
+
 .magic-frame-inner {
 position: absolute;
 inset: 0;
-background: rgba(9, 10, 15, 0.65);
-backdrop-filter: blur(10px);
+background: rgba(9, 10, 15, 0.2);
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
 z-index: -1;
 }
 
-/* IMAGEN */
-.image-luli {
-width: 250px;
-height: auto;
-border-radius: 20px;
-box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.title-luli {
+font-family: 'Pinyon Script', cursive;
+color: white;
+font-size: 3.2rem;
+margin: 0;
+text-align: center;
 }
 
-/* FONDO FOTO */
+/* LA IMAGEN AHORA SÍ OBEDECERÁ */
+.image-luli-png {
+width: 140px !important;
+/* Ancho pequeño y controlado */
+height: auto !important;
+display: block;
+margin: 0 auto;
+filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+animation: glow-silhouette 3s ease-in-out infinite alternate;
+}
+
+.img-wrapper {
+width: 100%;
+display: flex;
+justify-content: center;
+padding: 10px 0;
+}
+
+.verse-container {
+font-family: 'Pinyon Script', cursive;
+color: white;
+font-size: 1.6rem;
+line-height: 1.4;
+text-align: center;
+width: 100%;
+}
+
+
+/* =========================================
+   5. BLOQUE 2 (CONTADOR Y FOTO FONDO)
+   ========================================= */
 .counter-photo-bg {
 background-image: url('assets/images/foto1.jpg');
 background-size: cover;
 background-position: center;
-min-height: 550px;
+min-height: 500px;
+/* Reducido un poco para móviles */
 }
 
-/* NOMBRES */
 .name-script {
 font-family: 'Pinyon Script', cursive;
 color: white;
 font-size: 3.5rem;
 }
-.name-plus {
-font-family: 'Special Elite', cursive;
-color: white;
-font-size: 1.8rem;
-}
 
-/* CONTADOR */
 .counter-display {
 display: flex;
 gap: 10px;
-margin: 25px 0;
+margin: 20px 0;
 }
+
 .counter-box {
 background: rgba(255,255,255,0.15);
-padding: 15px;
+padding: 12px;
 border-radius: 15px;
 border: 1px solid rgba(255,255,255,0.2);
 text-align: center;
 flex: 1;
 }
-.counter-box span {
-display: block;
+
+/* =========================================
+   7. COMPONENTES GLOBALES (BOTONES)
+   ========================================= */
+.hidden {
+display: none !important;
+}
+
+.btn-continue {
+background: rgba(255, 255, 255, 0.1);
 color: white;
-font-family: 'Special Elite';
-font-size: 2.2rem;
+border: 1px solid rgba(255, 255, 255, 0.4);
+padding: 10px 22px;
+border-radius: 30px;
+font-family: 'Special Elite', cursive;
+font-size: 0.9rem;
+cursor: pointer;
+backdrop-filter: blur(5px);
+transition: all 0.3s ease;
+margin-top: 10px;
 }
 
-/* ANIMACIONES */
-@keyframes twinkle {
-0%, 100% { opacity: 0.3;
-}
-50% { opacity: 1;
-}
-}
-
+/* =========================================
+   8. ANIMACIONES
+   ========================================= */
+@keyframes rotate-disk { from { transform: rotate(0deg);
+} to { transform: rotate(360deg);
+} }
 @keyframes heartbeat {
-0% { transform: scale(1);
+0%, 100% { transform: scale(1);
 }
-25% { transform: scale(1.1);
-}
-40% { transform: scale(1);
-}
-60% { transform: scale(1.15);
-}
-100% { transform: scale(1);
+50% { transform: scale(1.1);
 }
 }
-
 @keyframes phraseReveal {
 0% { transform: translateY(20px);
 opacity: 0;
@@ -242,15 +265,12 @@ opacity: 1;
 filter: blur(0);
 }
 }
-
-/* BOTONES */
-.btn-continue {
-background: white;
-color: #090a0f;
-border: none;
-padding: 10px 20px;
-border-radius: 20px;
-font-family: 'Special Elite';
-cursor: pointer;
-margin-top: 15px;
+@keyframes twinkle { 0%, 100% { opacity: 0.3;
+} 50% { opacity: 1;
+} }
+@keyframes glow-silhouette {
+from { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+to { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+}
 }
