@@ -336,65 +336,68 @@ color: white;
    ========================================= */
 
 #block-3-container .magic-frame {
-    /* Mismo alto que el bloque 2 para mantener armonía */
-    min-height: 580px !important; 
-    justify-content: flex-start;
-    padding: 30px 20px;
-    overflow: hidden;
+/* Mismo alto que el bloque 2 para mantener armonía */
+min-height: 580px !important;
+justify-content: flex-start;
+padding: 30px 20px;
+overflow: hidden;
 }
 
 /* Título centrado */
 .title-gallery {
-    font-family: 'Pinyon Script', cursive;
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 25px; 
-    text-align: center; /* Título centrado */
-    width: 100%;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+font-family: 'Pinyon Script', cursive;
+color: white;
+font-size: 3rem;
+margin-bottom: 25px;
+text-align: center;
+/* Título centrado */
+width: 100%;
+text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
 /* CONTENEDOR DE LA GALERÍA (Achicado un poco) */
 .accordion-container {
-    display: flex;
-    width: 100%;
-    height: 380px; /* Reducido de 450px a 380px para que no sea tan alto */
-    gap: 8px;
-    margin-bottom: 20px;
+display: flex;
+width: 100%;
+height: 380px;
+/* Reducido de 450px a 380px para que no sea tan alto */
+gap: 8px;
+margin-bottom: 20px;
 }
 
 .accordion-item {
-    flex: 1;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 1.5px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
+flex: 1;
+overflow: hidden;
+border-radius: 15px;
+border: 1.5px solid rgba(255, 255, 255, 0.3);
+transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+cursor: pointer;
 }
 
 .accordion-item:hover {
-    flex: 4; /* Un poco menos exagerado que antes */
-    border-color: rgba(255, 255, 255, 0.7);
+flex: 4;
+/* Un poco menos exagerado que antes */
+border-color: rgba(255, 255, 255, 0.7);
 }
 
 .accordion-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+width: 100%;
+height: 100%;
+object-fit: cover;
 }
 
 /* Verso de la galería */
 .verse-gallery {
-    font-family: 'Pinyon Script', cursive;
-    color: white;
-    font-size: 1.3rem;
-    text-align: center;
-    margin: 10px 0;
+font-family: 'Pinyon Script', cursive;
+color: white;
+font-size: 1.3rem;
+text-align: center;
+margin: 10px 0;
 }
 
 /* Espacio para el nuevo botón que aparecerá */
 #btn-to-block4 {
-    margin-top: 15px !important;
+margin-top: 15px !important;
 }
 
 
@@ -421,7 +424,52 @@ margin-top: 50px;
 }
 
 /* =========================================
-   8. ANIMACIONES
+   8. BLOQUE 4: MENSAJE EN LA BOTELLA
+   ========================================= */
+/* Animación de flotar */
+@keyframes wave {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.floating-bottle {
+    width: 150px;
+    cursor: pointer;
+    animation: wave 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.5));
+    transition: all 0.5s;
+}
+
+.floating-bottle.open {
+    transform: scale(2) opacity(0);
+    pointer-events: none;
+}
+
+/* El pergamino/papel que aparece */
+.message-paper {
+    background: #fdf5e6; /* Color papel antiguo */
+    color: #2c1e16;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    font-family: 'Special Elite', cursive;
+    line-height: 1.6;
+    position: relative;
+    max-width: 80%;
+    transform: rotate(-2deg);
+    animation: fadeIn 1s forwards;
+}
+
+/* Efecto de bordes quemados o rotos */
+.paper-content {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 10px;
+}
+
+
+/* =========================================
+    ANIMACIONES
    ========================================= */
 @keyframes rotate-disk { from { transform: rotate(0deg);
 } to { transform: rotate(360deg);

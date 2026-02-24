@@ -184,3 +184,17 @@ function createCelebration() {
 
     setTimeout(() => p.remove(), 4000);
 }
+
+function openBottle() {
+    const bottle = document.getElementById('bottle-img');
+    const paper = document.getElementById('message-paper');
+    
+    // La botella se agranda y desaparece
+    bottle.style.transform = "scale(2)";
+    bottle.style.opacity = "0";
+    
+    setTimeout(() => {
+        bottle.classList.add('hidden');
+        paper.classList.remove('hidden'); // Aparece el mensaje
+    }, 500);
+}
