@@ -365,6 +365,97 @@ text-align: center;
 }
 
 /* =========================================
+   10. BLOQUE 5: JUEGO ATREVIDO (RULETA)
+   ========================================= */
+
+/* Fondo especial para el bloque atrevido */
+.spicy-overlay {
+    background: linear-gradient(135deg, rgba(60, 0, 0, 0.7), rgba(0, 0, 0, 0.9)) !important;
+    backdrop-filter: blur(15px);
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* El número que gira con brillo rojo */
+.lucky-number {
+    font-size: 5.5rem;
+    font-family: 'Special Elite', cursive;
+    color: #ff4d4d;
+    text-shadow: 0 0 25px rgba(255, 77, 77, 0.8);
+    background: rgba(0, 0, 0, 0.3);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 77, 77, 0.3);
+}
+
+/* Botón picante */
+.btn-spicy {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-family: 'Special Elite', cursive;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-spicy:active {
+    transform: scale(0.95);
+}
+
+.btn-spicy:disabled {
+    background: #551111;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* La tarjeta del sobre revelado */
+.spicy-card {
+    margin-top: 20px;
+    background: #fffafa; /* Un blanco hueso muy limpio */
+    padding: 25px 20px;
+    border-radius: 20px;
+    color: #1a1a1a;
+    width: 85%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+#card-emoji { 
+    font-size: 3.5rem; 
+    display: block; 
+    margin-bottom: 15px; 
+}
+
+#card-text { 
+    font-family: 'Special Elite', cursive; 
+    font-size: 1.1rem; 
+    line-height: 1.4;
+    color: #2c1e16;
+}
+
+/* Animación de entrada para el sobre */
+@keyframes slideUp {
+    from { transform: translateY(100px) scale(0.8); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+
+/* =========================================
    9. BLOQUE FINAL (DESPEDIDA)
    ========================================= */
 #block-closing-container .magic-frame {

@@ -40,12 +40,11 @@
             <div class="names-container">
                 <span class="name-luli">Luli</span>
                 <span class="name-plus">+</span>
-                <span class="name-limbert">Limbhert</span>
+                <span class="name-Limbhert">Limbhert</span>
             </div>
 
             <div class="counter-section">
                 <div id="main-counter" class="counter-display"></div>
-
                 <div class="next-day-container">
                     <p id="next-day-text" class="clock-phrase"></p>
                 </div>
@@ -58,25 +57,13 @@
     <div id="block-3-container" class="main-content hidden">
         <div class="magic-frame">
             <div class="magic-frame-inner"></div>
-
             <h2 class="title-gallery">Tu historia se cruzó con la mía</h2>
-
             <div class="accordion-container">
-                <div class="accordion-item">
-                    <img src="assets/images/foto1.jpg">
-                </div>
-                <div class="accordion-item">
-                    <img src="assets/images/foto2.jpg">
-                </div>
-                <div class="accordion-item">
-                    <img src="assets/images/foto3.jpg">
-                </div>
+                <div class="accordion-item"><img src="assets/images/foto1.jpg"></div>
+                <div class="accordion-item"><img src="assets/images/foto2.jpg"></div>
+                <div class="accordion-item"><img src="assets/images/foto3.jpg"></div>
             </div>
-
-            <p class="verse-gallery">
-                Tanta gente ahí fuera, y coincidir aquel día.
-            </p>
-
+            <p class="verse-gallery">Tanta gente ahí fuera, y coincidir aquel día.</p>
             <button id="btn-to-block4" class="btn-continue hidden" onclick="showBlock4()">Continuar nuestra historia ✨</button>
         </div>
     </div>
@@ -84,38 +71,54 @@
     <div id="block-4-container" class="main-content hidden">
         <div class="magic-frame bottle-bg">
             <div class="magic-frame-inner"></div>
-
             <h2 class="title-gallery">Léeme...</h2>
-
             <div class="bottle-wrapper" onclick="openBottle()">
                 <img src="assets/images/botella.png" id="bottle-img" class="floating-bottle">
             </div>
-
             <div id="message-paper" class="message-paper hidden">
                 <div class="paper-content">
                     <p id="daily-message">
                         Dicen que la distancia... <br><br>
                         Enfría las cosas, pero contigo pasa lo contrario.
-                        Cada kilómetro parece encender más las ganas de tenerte cerca,
-                        de comprobar si tus besos saben tan bien como los imagino antes de dormir...
+                        Cada kilómetro parece encender más las ganas de tenerte cerca...
                     </p>
-                    <button class="btn-continue" style="margin-top: 20px;" onclick="showClosing()">Continuar...</button>
+                    <button class="btn-continue" style="margin-top: 20px;" onclick="showBlock5()">Continuar... 🔥</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="block-5-container" class="main-content hidden">
+        <div class="magic-frame spicy-bg">
+            <div class="magic-frame-inner spicy-overlay"></div>
+            
+            <h2 class="title-gallery">¿Verdad o Reto? 🔥</h2>
+            
+            <div class="game-container">
+                <div id="lucky-number" class="lucky-number">?</div>
+                <button id="btn-spin" class="btn-spicy" onclick="playGame()">Probar mi suerte 🎲</button>
+            </div>
+
+            <div id="spicy-card" class="spicy-card hidden">
+                <div class="card-inner">
+                    <span id="card-emoji"></span>
+                    <p id="card-text"></p>
+                    <button class="btn-continue" onclick="resetGame()">Jugar otra vez</button>
+                </div>
+            </div>
+
+            <button id="btn-to-closing" class="btn-continue hidden" onclick="showClosing()">Terminar por hoy ❤️</button>
         </div>
     </div>
 
     <div id="block-closing-container" class="main-content hidden">
         <div class="magic-frame">
             <div class="magic-frame-inner"></div>
-
             <h2 class="title-gallery">Continuará...</h2>
-
             <p class="verse-container">
                 Nuestra historia apenas comienza y lo mejor está por venir. <br>
                 Te quiero mucho, Luli. ❤️
             </p>
-
             <button class="btn-continue" onclick="closeApp()">Cerrar por ahora ✨</button>
         </div>
     </div>

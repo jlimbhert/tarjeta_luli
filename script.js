@@ -47,7 +47,6 @@ musicDisk.classList.add('visible');
 }
 
 if (clickSound) clickSound.play();
-
 cover.classList.add('explode');
 
 setTimeout(() => {
@@ -62,7 +61,7 @@ startTypewriter();
    ========================================= */
 function startTypewriter() {
 const textContainer = document.getElementById('typewriter-text');
-const verso = "\nEra tu historia\nSe cruzo con la mia\nTanta gente, tanta gente\nHay fuera\ny coincidir aquel día...";
+const verso = "\nEra tu historia\nSe cruzó con la mía\nTanta gente, tanta gente\nAhí fuera\ny coincidir aquel día...";
 let i = 0;
 textContainer.innerHTML = "";
 
@@ -78,7 +77,7 @@ btn.innerHTML = "Ver nuestro tiempo juntos ❤️";
 btn.onclick = () => {
 mainContent.classList.add('hidden');
 document.getElementById('block-2-container').classList.remove('hidden');
-startCounter(); // Inicia el Bloque 2
+startCounter();
 setInterval(createCelebration, 400);
 };
 textContainer.appendChild(document.createElement('br'));
@@ -130,30 +129,115 @@ clockElement.innerHTML = `Faltan <b>${h}h ${m}m ${s}s</b> para agregar un día m
 }
 
 /* =========================================
-   6. BLOQUE 3: GALERÍA Y NAVEGACIÓN
+   6. BLOQUE 3: GALERÍA
    ========================================= */
 function showGallery() {
 document.getElementById('block-2-container').classList.add('hidden');
 document.getElementById('block-3-container').classList.remove('hidden');
 
-// Muestra el botón para el Bloque 4 después de 6 segundos
 setTimeout(() => {
 const btn4 = document.getElementById('btn-to-block4');
 if (btn4) btn4.classList.remove('hidden');
 }, 6000);
 }
 
-// Función para ir al Bloque 4
+/* =========================================
+   7. BLOQUE 4: BOTELLA
+   ========================================= */
 function showBlock4() {
-const b3 = document.getElementById('block-3-container');
-const b4 = document.getElementById('block-4-container');
+document.getElementById('block-3-container').classList.add('hidden');
+document.getElementById('block-4-container').classList.remove('hidden');
+}
 
-if (b3) b3.classList.add('hidden');
-if (b4) b4.classList.remove('hidden');
+function openBottle() {
+const bottle = document.getElementById('bottle-img');
+const paper = document.getElementById('message-paper');
+
+bottle.style.transform = "scale(2)";
+bottle.style.opacity = "0";
+
+setTimeout(() => {
+bottle.classList.add('hidden');
+paper.classList.remove('hidden');
+}, 500);
 }
 
 /* =========================================
-   7. UTILIDADES (MÚSICA Y CELEBRACIÓN)
+   8. BLOQUE 5: JUEGO ATREVIDO (NUEVO)
+   ========================================= */
+function showBlock5() {
+document.getElementById('block-4-container').classList.add('hidden');
+document.getElementById('block-5-container').classList.remove('hidden');
+}
+
+const spicyOptions = [
+{ emoji: "🤫", text: "Cuéntame un secreto que nadie más sepa..." },
+{ emoji: "📸", text: "Envíame una foto que me deje sin palabras (ahora mismo)." },
+{ emoji: "🔥", text: "RETO: Dime qué me harías si me tuvieras en frente ahora." },
+{ emoji: "🍀", text: "¡Te salvaste! Por ahora no hay castigo..." },
+{ emoji: "🎭", text: "VERDAD: ¿Cuál es tu fantasía más recurrente conmigo?" },
+{ emoji: "🍷", text: "RETO: Cuéntame tu sueño más atrevido que me incluya." },
+{ emoji: "💋", text: "VERDAD: ¿Qué es lo que más te gusta que te diga al oído?" }
+// Puedes seguir agregando hasta completar los 25 aquí...
+];
+
+function playGame() {
+const numDisplay = document.getElementById('lucky-number');
+const btnSpin = document.getElementById('btn-spin');
+const card = document.getElementById('spicy-card');
+let counter = 0;
+
+btnSpin.disabled = true;
+card.classList.add('hidden');
+
+const interval = setInterval(() => {
+numDisplay.innerText = Math.floor(Math.random() * 25) + 1;
+counter++;
+if (counter > 20) {
+clearInterval(interval);
+const finalIndex = Math.floor(Math.random() * spicyOptions.length);
+numDisplay.innerText = finalIndex + 1;
+revealResult(finalIndex);
+}
+}, 50);
+}
+
+function revealResult(index) {
+const card = document.getElementById('spicy-card');
+const cardEmoji = document.getElementById('card-emoji');
+const cardText = document.getElementById('card-text');
+const btnClosing = document.getElementById('btn-to-closing');
+
+cardEmoji.innerText = spicyOptions[index].emoji;
+cardText.innerText = spicyOptions[index].text;
+
+setTimeout(() => {
+card.classList.remove('hidden');
+btnClosing.classList.remove('hidden');
+}, 500);
+}
+
+function resetGame() {
+document.getElementById('spicy-card').classList.add('hidden');
+document.getElementById('btn-spin').disabled = false;
+document.getElementById('lucky-number').innerText = "?";
+}
+
+/* =========================================
+   9. BLOQUE FINAL: DESPEDIDA
+   ========================================= */
+function showClosing() {
+// Cerramos el Bloque 5 (Juego) para mostrar el final
+document.getElementById('block-5-container').classList.add('hidden');
+document.getElementById('block-closing-container').classList.remove('hidden');
+}
+
+function closeApp() {
+alert("¡Gracias por visitar nuestra historia! Ahora puedes cerrar esta pestaña.");
+}
+
+/* =========================================
+   10. UTILIDADES GLOBALES
    ========================================= */
 musicDisk.addEventListener('click', (e) => {
 e.stopPropagation();
@@ -183,37 +267,4 @@ p.animate([
 ], { duration: 4000 });
 
 setTimeout(() => p.remove(), 4000);
-}
-
-function openBottle() {
-const bottle = document.getElementById('bottle-img');
-const paper = document.getElementById('message-paper');
-
-// La botella se agranda y desaparece
-bottle.style.transform = "scale(2)";
-bottle.style.opacity = "0";
-
-setTimeout(() => {
-bottle.classList.add('hidden');
-paper.classList.remove('hidden'); // Aparece el mensaje
-}, 500);
-}
-
-// Función para ir desde el mensaje de la botella al bloque de despedida
-function showClosing() {
-document.getElementById('block-4-container').classList.add('hidden');
-document.getElementById('block-closing-container').classList.remove('hidden');
-}
-
-// Función para intentar cerrar el navegador
-function closeApp() {
-// Intenta cerrar la pestaña actual
-window.close();
-
-// Si el navegador bloquea window.close() (por seguridad),
-// redirigimos a una página neutra o lanzamos un mensaje
-setTimeout(() => {
-alert("¡Gracias por visitar nuestra historia! Puedes cerrar esta pestaña.");
-// Opcional: window.location.href = "about:blank";
-}, 500);
 }
