@@ -164,7 +164,7 @@ text-align: center;
 
 /* LA IMAGEN AHORA SÍ OBEDECERÁ */
 .image-luli-png {
-width: 140px !important;
+width: 230px !important;
 /* Ancho pequeño y controlado */
 height: auto !important;
 display: block;
@@ -193,34 +193,211 @@ width: 100%;
 /* =========================================
    5. BLOQUE 2 (CONTADOR Y FOTO FONDO)
    ========================================= */
-.counter-photo-bg {
+
+#block-2 {
+/* Altura más grande para que el botón no empuje el contador al centro */
+min-height: 650px !important;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 40px 20px;
 background-image: url('assets/images/foto1.jpg');
 background-size: cover;
 background-position: center;
-min-height: 500px;
-/* Reducido un poco para móviles */
+border-radius: 40px;
+position: relative;
+overflow: hidden;
 }
 
-.name-script {
+/* EL "VELO BLANCO" (Capa traslúcida sobre la foto) */
+.photo-overlay {
+background: rgba(255, 255, 255, 0.4) !important;
+/* Blanco apenitas opaco */
+backdrop-filter: blur(3px);
+/* Un leve desenfoque para dar efecto cristal */
+-webkit-backdrop-filter: blur(3px);
+position: absolute;
+inset: 0;
+z-index: 0;
+}
+
+/* Aseguramos que todo el contenido esté sobre el velo blanco */
+.names-container, .counter-section, #btn-to-gallery {
+position: relative;
+z-index: 10;
+}
+
+/* NOMBRES EN ESCALERA (Ajuste de grosor) */
+.names-container {
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.name-luli, .name-limbert {
 font-family: 'Pinyon Script', cursive;
-color: white;
-font-size: 3.5rem;
+color: #000000;
+font-size: 3.8rem;
+/* Un pelín más grandes */
+font-weight: bold;
+/* Para que no se pierda la fuente fina */
+text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+.name-luli { text-align: left;
+}
+.name-limbert { text-align: right;
+}
+
+.name-plus {
+font-family: 'Special Elite', cursive;
+color: #000000;
+font-size: 2.5rem;
+text-align: center;
+}
+
+/* SECCIÓN DEL CONTADOR */
+.counter-section {
+margin-top: auto;
+text-align: center;
+width: 100%;
 }
 
 .counter-display {
 display: flex;
-gap: 10px;
-margin: 20px 0;
+gap: 12px;
+justify-content: center;
+margin-bottom: 10px;
+/* Reducido espacio con la frase */
 }
 
+/* CUADROS DEL CONTADOR (Negros, altos y semitransparentes) */
 .counter-box {
-background: rgba(255,255,255,0.15);
-padding: 12px;
-border-radius: 15px;
-border: 1px solid rgba(255,255,255,0.2);
-text-align: center;
-flex: 1;
+/* Fondo negro con 80% de opacidad para que sea semi-transparente */
+background: rgba(0, 0, 0, 0.8) !important;
+
+padding: 25px 15px;
+/* Altura considerable */
+border-radius: 20px;
+border: 1px solid rgba(255, 255, 255, 0.2);
+/* Un borde finito para que brille el cuadro */
+min-width: 100px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 8px;
+backdrop-filter: blur(5px);
+/* Efecto de cristal esmerilado dentro del cuadro */
 }
+
+/* NÚMEROS BLANCOS */
+.counter-box span {
+display: block;
+font-size: 3rem;
+font-family: 'Special Elite', cursive;
+color: #ffffff !important;
+line-height: 1;
+}
+
+/* ETIQUETAS BLANCAS (Meses / Días) */
+.counter-box label {
+color: #ffffff !important;
+font-size: 0.75rem;
+text-transform: uppercase;
+font-weight: bold;
+letter-spacing: 1.5px;
+}
+
+
+/* FRASE DEL RELOJ */
+.clock-phrase {
+color: #000000 !important;
+font-family: 'Special Elite', cursive;
+font-size: 0.9rem;
+font-weight: bold;
+margin: 5px 0;
+/* Espacio mínimo */
+}
+
+/* EL BOTÓN (Ajuste de espacio) */
+#btn-to-gallery {
+margin-top: 15px !important;
+/* Reducido para que no empuje todo hacia arriba */
+margin-bottom: 10px;
+background: rgba(0, 0, 0, 0.8);
+/* Botón negro para que combine con los cuadros */
+color: white;
+}
+
+/* =========================================
+   6. BLOQUE 3 (GALERÍA MOMENTOS) - AJUSTADO
+   ========================================= */
+
+#block-3-container .magic-frame {
+    /* Mismo alto que el bloque 2 para mantener armonía */
+    min-height: 580px !important; 
+    justify-content: flex-start;
+    padding: 30px 20px;
+    overflow: hidden;
+}
+
+/* Título centrado */
+.title-gallery {
+    font-family: 'Pinyon Script', cursive;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 25px; 
+    text-align: center; /* Título centrado */
+    width: 100%;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* CONTENEDOR DE LA GALERÍA (Achicado un poco) */
+.accordion-container {
+    display: flex;
+    width: 100%;
+    height: 380px; /* Reducido de 450px a 380px para que no sea tan alto */
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.accordion-item {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+.accordion-item:hover {
+    flex: 4; /* Un poco menos exagerado que antes */
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.accordion-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Verso de la galería */
+.verse-gallery {
+    font-family: 'Pinyon Script', cursive;
+    color: white;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Espacio para el nuevo botón que aparecerá */
+#btn-to-block4 {
+    margin-top: 15px !important;
+}
+
+
 
 /* =========================================
    7. COMPONENTES GLOBALES (BOTONES)
@@ -240,7 +417,7 @@ font-size: 0.9rem;
 cursor: pointer;
 backdrop-filter: blur(5px);
 transition: all 0.3s ease;
-margin-top: 10px;
+margin-top: 50px;
 }
 
 /* =========================================

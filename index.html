@@ -23,63 +23,65 @@
     </div>
 
     <div id="main-content" class="main-content hidden">
+        <div class="magic-frame">
+            <div class="magic-frame-inner"></div>
+            <h2 class="title-luli">Para Luli</h2>
+            <div class="img-wrapper">
+                <img src="assets/images/delijitos2.png" class="image-luli-png">
+            </div>
+            <div id="typewriter-text" class="verse-container"></div>
+        </div>
+    </div>
+
+<div id="block-2-container" class="main-content hidden">
+    <div id="block-2" class="magic-frame counter-photo-bg">
+        <div class="magic-frame-inner photo-overlay"></div>
+
+        <div class="names-container">
+            <span class="name-luli">Luli</span>
+            <span class="name-plus">+</span>
+            <span class="name-limbert">Limbhert</span>
+        </div>
+
+        <div class="counter-section">
+            <div id="main-counter" class="counter-display"></div>
+            
+            <div class="next-day-container">
+                <p id="next-day-text" class="clock-phrase"></p>
+            </div>
+        </div>
+
+        <button id="btn-to-gallery" class="btn-continue hidden" onclick="showGallery()">Nuestros Recuerdos ❤️</button>
+    </div>
+</div>
+
+<div id="block-3-container" class="main-content hidden">
     <div class="magic-frame">
         <div class="magic-frame-inner"></div>
-        <h2 class="title-luli">Para Luli</h2>
-        <div class="img-wrapper">
-            <img src="assets/images/mickey.png" class="image-luli-png"> 
+        
+        <h2 class="title-gallery">Nuestros Momentos</h2>
+        
+        <div class="accordion-container">
+            <div class="accordion-item">
+                <img src="assets/images/foto1.jpg">
+            </div>
+            <div class="accordion-item">
+                <img src="assets/images/foto2.jpg">
+            </div>
+            <div class="accordion-item">
+                <img src="assets/images/foto3.jpg">
+            </div>
         </div>
-        <div id="typewriter-text" class="verse-container"></div>
+
+        <p class="verse-gallery">
+            Cada foto es un pedacito de mi felicidad contigo.
+        </p>
+
+        <button id="btn-to-block4" class="btn-continue hidden" onclick="showBlock4()">Continuar nuestra historia ✨</button>
     </div>
 </div>
 
 
-    <div id="block-2-container" class="main-content hidden">
-        <div id="block-2" class="magic-frame counter-photo-bg">
-            <div class="magic-frame-inner photo-overlay"></div>
-
-            <div class="names-wrapper">
-                <div class="name-row-right">
-                    <span class="name-script">Luli</span>
-                </div>
-                <div class="name-row-center">
-                    <span class="name-plus">+</span>
-                </div>
-                <div class="name-row-left">
-                    <span class="name-script">Limbhert</span>
-                </div>
-            </div>
-
-            <div id="main-counter" class="counter-display"></div>
-
-            <div class="next-day-container">
-                <p id="next-day-text" class="clock-phrase"></p>
-            </div>
-
-            <button id="btn-to-gallery" class="btn-continue hidden" onclick="showGallery()">Nuestros Recuerdos ❤️</button>
-        </div>
-    </div>
-
-    <div id="block-3-container" class="main-content hidden">
-        <div class="magic-frame">
-            <div class="magic-frame-inner"></div>
-            <h2 class="title-luli">Momentos</h2>
-            <div class="accordion-container">
-                <div class="accordion-item">
-                    <img src="assets/images/foto2.jpg">
-                </div>
-                <div class="accordion-item">
-                    <img src="assets/images/foto1.jpg">
-                </div>
-                <div class="accordion-item">
-                    <img src="assets/images/foto3.jpg">
-                </div>
-            </div>
-            <p class="verse-container" style="font-size: 1.2rem;">
-                Cada foto es un pedacito de mi felicidad contigo.
-            </p>
-        </div>
-    </div>
 
     <audio id="mainAudio" src="assets/audio/cancion.mp3" loop preload="auto"></audio>
     <audio id="clickSound" src="assets/audio/click.mp3" preload="auto"></audio>

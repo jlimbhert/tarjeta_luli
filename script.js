@@ -33,13 +33,12 @@ for (let i = 0; i < 150; i++) {
 mainIcon.addEventListener('click', (e) => {
     e.stopPropagation();
 
-    // Reproducción de audio al primer clic
     if (mainAudio) {
         mainAudio.load();
         mainAudio.play()
             .then(() => {
                 musicDisk.classList.add('playing');
-                musicDisk.classList.add('visible'); // Muestra el disco de música
+                musicDisk.classList.add('visible');
             })
             .catch(err => {
                 console.error("Error de audio:", err);
@@ -49,13 +48,12 @@ mainIcon.addEventListener('click', (e) => {
 
     if (clickSound) clickSound.play();
 
-    // Animación de salida de portada
     cover.classList.add('explode');
 
     setTimeout(() => {
         cover.style.display = 'none';
         mainContent.classList.remove('hidden');
-        startTypewriter(); // Inicia el Bloque 1
+        startTypewriter();
     }, 800);
 });
 
@@ -74,7 +72,6 @@ function startTypewriter() {
             i++;
             setTimeout(type, 100);
         } else {
-            // Aparición del botón después del texto
             const btn = document.createElement('button');
             btn.className = "btn-continue";
             btn.innerHTML = "Ver nuestro tiempo juntos ❤️";
@@ -82,7 +79,7 @@ function startTypewriter() {
                 mainContent.classList.add('hidden');
                 document.getElementById('block-2-container').classList.remove('hidden');
                 startCounter(); // Inicia el Bloque 2
-                setInterval(createCelebration, 400); // Inicia corazones flotantes
+                setInterval(createCelebration, 400);
             };
             textContainer.appendChild(document.createElement('br'));
             textContainer.appendChild(btn);
@@ -95,7 +92,6 @@ function startTypewriter() {
    5. BLOQUE 2: CONTADOR DE TIEMPO
    ========================================= */
 function startCounter() {
-    // Muestra el botón de la galería después de 5 segundos
     setTimeout(() => {
         const btnGal = document.getElementById('btn-to-gallery');
         if (btnGal) btnGal.classList.remove('hidden');
@@ -103,27 +99,33 @@ function startCounter() {
 
     setInterval(() => {
         const now = new Date();
-        let months = now.getMonth() - startDate.getMonth() + (12 * (now.getFullYear() - startDate.getFullYear()));
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = (years * 12) + (now.getMonth() - startDate.getMonth());
         let days = now.getDate() - startDate.getDate();
 
         if (days < 0) {
             months--;
-            days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+            days += prevMonthLastDay;
         }
 
-        // Renderizado del contador en el HTML
         let html = "";
         html += `<div class="counter-box"><span>${months.toString().padStart(2, '0')}</span><label>Meses</label></div>`;
         html += `<div class="counter-box"><span>${days.toString().padStart(2, '0')}</span><label>Días</label></div>`;
-        document.getElementById('main-counter').innerHTML = html;
+        
+        const counterElement = document.getElementById('main-counter');
+        if (counterElement) counterElement.innerHTML = html;
 
-        // Lógica del "Siguiente Día" (Reloj inverso)
         const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
         const diff = nextDay - now;
         const h = Math.floor((diff / 3600000) % 24);
         const m = Math.floor((diff / 60000) % 60);
         const s = Math.floor((diff / 1000) % 60);
-        document.getElementById('next-day-text').innerHTML = `Faltan <b>${h}h ${m}m ${s}s</b> para agregar un día más a nuestra historia`;
+        
+        const clockElement = document.getElementById('next-day-text');
+        if (clockElement) {
+            clockElement.innerHTML = `Faltan <b>${h}h ${m}m ${s}s</b> para agregar un día más a nuestra historia`;
+        }
     }, 1000);
 }
 
@@ -133,13 +135,26 @@ function startCounter() {
 function showGallery() {
     document.getElementById('block-2-container').classList.add('hidden');
     document.getElementById('block-3-container').classList.remove('hidden');
+
+    // Muestra el botón para el Bloque 4 después de 6 segundos
+    setTimeout(() => {
+        const btn4 = document.getElementById('btn-to-block4');
+        if (btn4) btn4.classList.remove('hidden');
+    }, 6000);
+}
+
+// Función para ir al Bloque 4
+function showBlock4() {
+    const b3 = document.getElementById('block-3-container');
+    const b4 = document.getElementById('block-4-container');
+    
+    if (b3) b3.classList.add('hidden');
+    if (b4) b4.classList.remove('hidden');
 }
 
 /* =========================================
-   7. UTILIDADES Y CONTROLES (MÚSICA, CELEBRACIÓN)
+   7. UTILIDADES (MÚSICA Y CELEBRACIÓN)
    ========================================= */
-
-// Control manual del disco de música
 musicDisk.addEventListener('click', (e) => {
     e.stopPropagation();
     if (mainAudio.paused) {
@@ -151,7 +166,6 @@ musicDisk.addEventListener('click', (e) => {
     }
 });
 
-// Generador de corazones y brillos flotantes
 function createCelebration() {
     const p = document.createElement('div');
     p.innerHTML = Math.random() > 0.5 ? '❤️' : '✨';
@@ -160,7 +174,7 @@ function createCelebration() {
     p.style.top = '100vh';
     p.style.fontSize = '20px';
     p.style.zIndex = '500';
-    p.style.pointerEvents = 'none'; // Para que no estorben al hacer clic
+    p.style.pointerEvents = 'none';
     document.body.appendChild(p);
     
     p.animate([
